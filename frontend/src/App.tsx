@@ -1,14 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import {Routes, Route} from 'react-router-dom'
+import ListingPage from '@/pages/ListingPage'
+import HomePage from '@/pages/HomePage'
+import MainLayout from '@/app/layouts/MainLayout'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
+    <Routes> 
+      <Route element={<MainLayout/>}>      
+        <Route index element={<HomePage/>}/>
+        <Route path='/listing' element={<ListingPage/>}/>
+      </Route>
+
+
+    </Routes>
     
     </>
   )
