@@ -1,0 +1,35 @@
+/* Обгортка логотипу */
+.container {
+    padding: 0 5px;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    display:block;
+}
+
+
+/* Стандартний розмір */
+.logo-size-standard {
+    width: 80px;
+    height: 20px;
+}
+
+/* Великий розмір */
+.logo-size-big {
+
+}
+
+/* На всю ширину */
+.logo-size-full {
+
+}
+
+@media (min-width: 768px){
+    .logo-size-standard {
+    width: 128px;
+    height: 32px;
+    }
+
+}
