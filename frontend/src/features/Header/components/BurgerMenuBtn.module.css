@@ -1,0 +1,19 @@
+
+
+.button{
+    size: 20px;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3.5px;
+    padding: 4px;
+}
+
+.line {
+    height: 1.5px;
+    width: 16px;
+    background-color: black;
+    border-radius: 1.5px;
+}
