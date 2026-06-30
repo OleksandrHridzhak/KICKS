@@ -1,9 +1,10 @@
-
+import Banner from '@/features/Banner/Banner'
 
 function ListingPage(){
+
     return(
         <>
-        Listing page
+            <Banner/>
         </>
     )
 }
