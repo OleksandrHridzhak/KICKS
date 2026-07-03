@@ -6,11 +6,14 @@ import clsx from 'clsx'
 import Logo from '@/shared/Logo/Logo'
 import Icon from '@/shared/Icon/Icon'
 import BurgerMenuBtn from './components/BurgerMenuBtn'
+import Wrapper from '@/shared/Wrapper/Wrapper'
 
 
 
 function Header() {
     return (
+        <Wrapper>
+
         <header className={styles.header}>
             <div className={styles.burgerMenuBtn}>
                 <BurgerMenuBtn />
@@ -64,6 +67,7 @@ function Header() {
             </nav>
 
         </header>
+        </Wrapper>
     )
 }
 

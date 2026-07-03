@@ -1,11 +1,17 @@
+.wrapper {
+    padding: 0 16px;
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
 .header {
     height: 52px;
 
-    max-width: 1440px;
     border-radius: 12px;
 
-    margin-inline: 16px;
+
     margin-block: 24px;
+
 
     padding-inline: 16px;
 
@@ -71,11 +77,14 @@ display: none;
 
 
 @media (min-width: 768px){
+    .wrapper {
+    padding: 0 60px;
+    }
     .header {
         height: 64px;
-        margin-inline: 32px;
         margin-block: 32px;
         padding-inline: 32px;
+        border-radius: 24px;
     }
     .cartNumber{
         width: 24px;
@@ -95,14 +104,6 @@ display: none;
 @media (min-width: 1024px) {
     .navList {
         gap: 40px;
-    }
-    
-}
-
-@media (min-width: 1440px){
-
-    .header {
-        margin-inline: 60px;
     }
     
 }
