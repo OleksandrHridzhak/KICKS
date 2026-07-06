@@ -1,0 +1,10 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Generate CSS",
+      "type": "shell",
+      "command": "node frontend/scripts/gen-css.js ${file}"
+    }
+  ]
+}

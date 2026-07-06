@@ -9,8 +9,12 @@ function HomePage() {
         placeholder="Password"
         titleText="Title text here"
         helperText="Helper text here"
+
       />
+
+
     </Wrapper>
+
   );
 }
 

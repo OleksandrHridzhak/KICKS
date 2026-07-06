@@ -1,0 +1,7 @@
+{
+  "CSS Module className": {
+    "prefix": "cn",
+    "body": ["className={styles.${1}}"],
+    "description": "CSS Modules className",
+  },
+}
