@@ -1,0 +1,9 @@
+.sectionBody {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filterSection {
+  margin-bottom: 16px;
+}

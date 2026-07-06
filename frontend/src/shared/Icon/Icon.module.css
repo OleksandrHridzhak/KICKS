@@ -1,38 +1,37 @@
-
-.icon{
-    color: #232321
+.icon {
+  color: #232321;
 }
 
-.size-16{
-    width: 16px;
-    height: 16px;
+.size-16 {
+  width: 16px;
+  height: 16px;
 }
-.size-24{
+.size-24 {
+  width: 24px;
+  height: 24px;
+}
+.size-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.size-16-24 {
+  width: 16px;
+  height: 16px;
+}
+
+.size-16-32 {
+  width: 16px;
+  height: 16px;
+}
+
+@media (min-width: 768px) {
+  .size-16-24 {
     width: 24px;
     height: 24px;
-}
-.size-32{
+  }
+  .size-16-32 {
     width: 32px;
     height: 32px;
-}
-
-.size-16-24{
-    width: 16px;
-    height: 16px;
-}
-
-.size-16-32{
-    width: 16px;
-    height: 16px;
-}
-
-@media(min-width: 768px){
-    .size-16-24{
-        width: 24px;
-        height: 24px;
-    }
-    .size-16-32{
-        width: 32px;
-        height: 32px;
-    }
+  }
 }

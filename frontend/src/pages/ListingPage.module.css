@@ -1,0 +1,33 @@
+.catalog {
+  margin-top: 24px;
+}
+
+.productList {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  max-width: 100%;
+}
+
+.filter {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .productList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1048px) {
+  .catalog {
+    display: grid;
+    grid-template-columns: 314px 4fr;
+    gap: 18px;
+  }
+
+  .filter {
+    display: block;
+    height: 100%;
+  }
+}

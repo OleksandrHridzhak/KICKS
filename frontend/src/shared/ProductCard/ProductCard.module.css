@@ -1,0 +1,50 @@
+.productCard {
+}
+
+.productCardLink {
+}
+
+.productImageWrapper {
+  border-radius: 16px;
+
+  height: clamp(180px, 15vw, 350px);
+
+  background-color: #ffffff;
+  padding: 8px;
+}
+.imageBox {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.productImage {
+  object-fit: cover;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.productBadge {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 12px;
+  width: 42px;
+  height: 22px;
+  background-color: #ffa52f;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0px 0px 13px 0px;
+}
+
+.productName {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+}

@@ -1,0 +1,54 @@
+.catalogHeader {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 24px;
+}
+.catalogActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.catalogInfo {
+}
+.filterButton {
+  height: 36px;
+  border-radius: 8px;
+}
+.sortButton {
+  height: 36px;
+  border-radius: 8px;
+}
+
+.catalogHeadign {
+  font-size: clamp(20px, 3vw, 36px);
+}
+
+.catalogItemNumber {
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+}
+
+@media (min-width: 1048px) {
+  .filterButton {
+    display: none;
+  }
+  .sortButton {
+    height: 56px;
+    border-radius: 16px;
+  }
+  .catalogHeader {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .catalogActions {
+    order: 2;
+  }
+
+  .catalogInfo {
+    order: 1;
+  }
+}

@@ -1,20 +1,18 @@
-import styles from './Logo.module.css'
+import styles from "./Logo.module.css";
 
 type LogoProps = {
-    size: 'standard' | 'big' | 'full'
-    color?: 'light' | 'dark'
+  size: "standard" | "big" | "full";
+  color?: "light" | "dark";
+};
+
+function Logo({ size, color = "dark" }: LogoProps) {
+  const logoPath = `/logo-${color}.png`;
+
+  return (
+    <div className={`${styles.container} ${styles[`logo-size-${size}`]}`}>
+      <img src={logoPath} alt="Our logo" className={styles.img} />
+    </div>
+  );
 }
 
-function Logo({size, color = 'dark'}: LogoProps){
-    
-    const logoPath = `/logo-${color}.png`
-
-    return(
-        <div className={`${styles.container} ${styles[`logo-size-${size}`]}`}>
-            <img src={logoPath} alt="Our logo" className={styles.img} />
-        </div>
-    )
-
-}
-
-export default Logo
+export default Logo;

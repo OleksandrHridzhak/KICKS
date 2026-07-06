@@ -1,0 +1,1 @@
+I can't solve problem with adaptation with props. So i decided to use mixed classes in button's module. But i don't want to write it by myself so I will download SCSS to use it's own cycles. It will be like tailwind md: sm etc.

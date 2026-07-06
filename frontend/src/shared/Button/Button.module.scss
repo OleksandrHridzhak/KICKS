@@ -1,0 +1,141 @@
+.button {
+  font-size: 12px;
+  border: none;
+  padding-inline: 16px;
+  white-space: nowrap;
+  border-radius: 12px;
+
+  // For links
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+// TODO Refactor these functions to one mixin
+/* Sizes */
+
+$sizes: (
+  h32: 32px,
+  h36: 36px,
+  h40: 40px,
+  h48: 48px,
+  h56: 56px,
+  h64: 64px,
+);
+
+@each $name, $size in $sizes {
+  .#{$name} {
+    min-height: $size;
+  }
+}
+
+@each $mobile-name, $mobile-size in $sizes {
+  @each $desktop-name, $desktop-size in $sizes {
+    @if $mobile-name != $desktop-name {
+      .#{$mobile-name}-#{$desktop-name} {
+        min-height: $mobile-size;
+
+        @media (min-width: 1024px) {
+          min-height: $desktop-size;
+        }
+      }
+    }
+  }
+}
+
+// Border radiuses
+
+$radius: (
+  br8: 8px,
+  br12: 12px,
+  br16: 16px,
+  br24: 24px,
+);
+
+@each $name, $value in $radius {
+  .#{$name} {
+    border-radius: $value;
+  }
+}
+
+@each $mobile-name, $mobile-value in $radius {
+  @each $desktop-name, $desktop-value in $radius {
+    @if $mobile-name != $desktop-name {
+      .#{$mobile-name}-#{$desktop-name} {
+        border-radius: $mobile-value;
+
+        @media (min-width: 1024px) {
+          border-radius: $desktop-value;
+        }
+      }
+    }
+  }
+}
+
+$font-sizes: (
+  fs12: 12px,
+  fs14: 14px,
+  fs16: 16px,
+  fs18: 18px,
+  fs20: 20px,
+  fs24: 24px,
+);
+
+@each $name, $value in $font-sizes {
+  .#{$name} {
+    font-size: $value;
+  }
+}
+
+@each $mobile-name, $mobile-font-size in $font-sizes {
+  @each $desktop-name, $desktop-font-size in $font-sizes {
+    .#{mobile-name}-#{desktop-name} {
+      font-size: $mobile-font-size;
+
+      @media (min-width: 1024px) {
+        font-size: $desktop-font-size;
+      }
+    }
+  }
+}
+
+/* Button widths */
+.fullWidth {
+  width: 100%;
+}
+
+.fitWidth {
+  width: fit-content;
+}
+
+.squareWidth {
+  aspect-ratio: 1;
+  padding-inline: 0;
+}
+
+/* Variants (Appearance) */
+
+.primary {
+  background-color: var(--button-primary-background);
+  color: white;
+  font-weight: var(--weight-semibold);
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+.secondary {
+  background-color: #232321;
+  color: white;
+}
+
+.ghost {
+  background-color: #f4f2f2;
+  color: var(--text-heading);
+  font-weight: var(--weight-semibold);
+  font-size: 14px;
+  font-family: var(--font-body);
+}
