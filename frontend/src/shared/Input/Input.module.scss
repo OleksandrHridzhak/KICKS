@@ -1,0 +1,60 @@
+.input {
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1px solid #232321;
+  caret-color: #008b28;
+  height: 48px;
+  width: 100%;
+
+  line-height: 38px;
+
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: 16px;
+  padding-inline: 16px;
+
+  &:hover {
+    border-color: #a5a3a7;
+  }
+
+  &:focus {
+    border-color: #008b28;
+    outline: #008b28;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+}
+
+.label {
+  font-size: 14px;
+}
+
+.inputWrapper {
+  margin-top: 4px;
+  position: relative;
+}
+.trailingIcons {
+  position: absolute;
+
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  gap: 4px;
+}
+
+.infoIcon {
+}
+
+.showHideIcon {
+}
+
+.inputDescription {
+  font-size: 12px;
+}
