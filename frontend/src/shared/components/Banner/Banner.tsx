@@ -1,6 +1,6 @@
 import styles from "./Banner.module.css";
-import bgPhoto from "@/assets/discout-banner-photo.jpg";
-import Wrapper from "@/shared/Wrapper/Wrapper";
+import bgPhoto from "@/shared/assets/discout-banner-photo.jpg";
+import Wrapper from "@/shared/components/Wrapper/Wrapper";
 
 function Banner() {
   return (

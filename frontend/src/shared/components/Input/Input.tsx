@@ -1,6 +1,6 @@
 import styles from "./Input.module.scss";
 import clsx from "clsx";
-import Icon from "@/shared/Icon/Icon";
+import Icon from "@/shared/components/Icon/Icon";
 
 type InputProps = {
   type: "text" | "email" | "password";

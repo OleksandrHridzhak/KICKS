@@ -1,12 +1,12 @@
-import styles from "./ListingPage.module.css";
+import styles from "./CatalogPage.module.css";
 
-import Banner from "@/features/Banner/Banner";
-import Wrapper from "@/shared/Wrapper/Wrapper";
-import ProductCard from "@/shared/ProductCard/ProductCard";
-import CatalogHeader from "@/features/CatalogHeader/CatalogHeader";
-import CatalogFilter from "@/features/CatalogFilter/CatalogFilter";
+import Banner from "@/shared/components/Banner/Banner";
+import Wrapper from "@/shared/components/Wrapper/Wrapper";
+import ProductCard from "@/features/products/ProductCard/ProductCard";
+import CatalogHeader from "@/features/products/CatalogHeader/CatalogHeader";
+import CatalogFilter from "@/features/products/CatalogFilter/CatalogFilter";
 
-function ListingPage() {
+function CatalogPage() {
   return (
     <>
       <main>
@@ -103,4 +103,4 @@ function ListingPage() {
   );
 }
 
-export default ListingPage;
+export default CatalogPage;

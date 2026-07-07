@@ -1,5 +1,5 @@
-import Input from "@/shared/Input/Input";
-import Wrapper from "@/shared/Wrapper/Wrapper";
+import Input from "@/shared/components/Input/Input";
+import Wrapper from "@/shared/components/Wrapper/Wrapper";
 
 function HomePage() {
   return (

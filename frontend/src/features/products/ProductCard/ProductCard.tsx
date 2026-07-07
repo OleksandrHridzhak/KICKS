@@ -1,7 +1,7 @@
 import styles from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
 
-import Button from "@/shared/Button/Button";
+import Button from "@/shared/components/Button/Button";
 
 type BadgeType =
   | { type: "text"; label: "New" | "Sale" | "Exclusive" }

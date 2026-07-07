@@ -1,7 +1,6 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import ListingPage from "@/pages/ListingPage";
-import HomePage from "@/pages/HomePage";
+import CatalogPage from "@/app/pages/CatalogPage";
+import HomePage from "@/app/pages/HomePage";
 import MainLayout from "@/app/layouts/MainLayout";
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/listing" element={<ListingPage />} />
+          <Route path="/catalog" element={<CatalogPage />} />
         </Route>
       </Routes>
     </>

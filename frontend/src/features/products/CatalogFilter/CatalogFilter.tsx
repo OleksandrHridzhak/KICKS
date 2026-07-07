@@ -1,5 +1,5 @@
 import styles from "./CatalogFilter.module.css";
-import Button from "@/shared/Button/Button";
+import Button from "@/shared/components/Button/Button";
 
 const sizeOptions = [
   "6",

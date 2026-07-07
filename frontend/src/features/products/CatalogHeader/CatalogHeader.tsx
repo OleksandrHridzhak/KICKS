@@ -1,6 +1,6 @@
 import styles from "./CatalogHeader.module.css";
-import Button from "@/shared/Button/Button";
-import Icon from "@/shared/Icon/Icon";
+import Button from "@/shared/components/Button/Button";
+import Icon from "@/shared/components/Icon/Icon";
 
 function CatalogHeader() {
   return (

@@ -2,10 +2,10 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-import Logo from "@/shared/Logo/Logo";
-import Icon from "@/shared/Icon/Icon";
+import Logo from "@/shared/components/Logo/Logo";
+import Icon from "@/shared/components/Icon/Icon";
 import BurgerMenuBtn from "./components/BurgerMenuBtn";
-import Wrapper from "@/shared/Wrapper/Wrapper";
+import Wrapper from "@/shared/components/Wrapper/Wrapper";
 
 function Header() {
   return (

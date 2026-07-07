@@ -1,8 +1,8 @@
 import styles from "./Footer.module.scss";
-import Wrapper from "@/shared/Wrapper/Wrapper";
-import Logo from "@/shared/Logo/Logo";
-import Button from "@/shared/Button/Button";
-import Input from "@/shared/Input/Input";
+import Wrapper from "@/shared/components/Wrapper/Wrapper";
+import Logo from "@/shared/components/Logo/Logo";
+import Button from "@/shared/components/Button/Button";
+import Input from "@/shared/components/Input/Input";
 
 function Footer() {
   return (
