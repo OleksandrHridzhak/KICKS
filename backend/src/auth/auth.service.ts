@@ -1,6 +1,11 @@
 import { prisma } from "../../lib/prisma.ts";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import {
+  ConflictError,
+  NotFoundError,
+  ValidationError,
+} from "../core/error.ts";
 
 import { config } from "../../config.ts";
 
@@ -11,7 +16,7 @@ export const registerService = async (email: string, password: string) => {
     },
   });
   if (user) {
-    throw new Error("User already exists");
+    throw new ConflictError("User already exists");
   }
 
   const encryptedPassword = await bcrypt.hash(password, 10);
@@ -44,13 +49,13 @@ export const loginService = async (email: string, password: string) => {
   });
 
   if (user === null) {
-    throw new Error("Invalid email or password");
+    throw new ValidationError("Invalid email or password");
   }
 
   const isValid = await bcrypt.compare(password, user.password);
 
   if (!isValid) {
-    throw new Error("Invalid email or password");
+    throw new ValidationError("Invalid email or password");
   }
 
   const token = jwt.sign(
@@ -74,7 +79,7 @@ export const meService = async (userId: string) => {
     },
   });
   if (!user) {
-    throw new Error("We can't find your information");
+    throw new NotFoundError("We can't find your information");
   }
   return {
     id: user.id,
