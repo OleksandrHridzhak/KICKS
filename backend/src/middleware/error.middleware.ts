@@ -13,7 +13,7 @@ export const errorMiddleware = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction,
+  __next: NextFunction,
 ) => {
   let statusCode = 500;
 
