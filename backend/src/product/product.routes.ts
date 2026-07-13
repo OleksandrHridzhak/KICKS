@@ -7,10 +7,10 @@ const router = Router();
 
 router.post("/", createProductController);
 router.patch("/:id", updateProductController);
+// router.delete("/product", );
 
 // router.get("/product");
 // router.put("/proudct");
-// router.delete("/product");
 
 // router.post("/variant");
 // router.put("/variant");

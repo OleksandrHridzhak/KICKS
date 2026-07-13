@@ -7,7 +7,6 @@ import { config } from "./config.ts";
 import { errorMiddleware } from "./src/middleware/error.middleware.ts";
 
 const app: Express = express();
-const port = config.port;
 
 // Global middlewares
 
@@ -30,6 +29,4 @@ app.get("/api/health", (req, res) => {
 // error middleware (should be at the end)
 app.use(errorMiddleware);
 
-app.listen(port, () => {
-  console.log(`Server is running on ${port} port`);
-});
+export default app;

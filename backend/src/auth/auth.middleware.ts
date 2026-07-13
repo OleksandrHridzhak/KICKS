@@ -1,19 +1,15 @@
 import { type Response, type Request, type NextFunction } from "express";
-import jwt, { type JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { config } from "../../config.ts";
-
-interface TokenPayload extends JwtPayload {
-  id: string;
-}
+import { type TokenPayload } from "./auth.types.ts";
+import { ACCESS_TOKEN_NAME } from "./auth.constants.ts";
 
 export const authMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  console.log(req);
-
-  const token = req.cookies.token;
+  const token = req.cookies[ACCESS_TOKEN_NAME];
 
   if (!token) {
     return res.sendStatus(401);
@@ -23,6 +19,7 @@ export const authMiddleware = async (
 
     req.user = {
       id: payload.id,
+      email: payload.email,
     };
     next();
   } catch {

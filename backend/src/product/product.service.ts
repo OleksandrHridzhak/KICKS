@@ -18,6 +18,13 @@ export const updateProductService = async (
     data,
   });
 };
+export const deleteProductService = async (id: string) => {
+  return prisma.product.delete({
+    where: {
+      id,
+    },
+  });
+};
 
 // export const createVariantService = async (productId: string) => {};
 
