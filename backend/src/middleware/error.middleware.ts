@@ -1,5 +1,6 @@
 import { type Request, type Response, type NextFunction } from "express";
 
+import { config } from "../../config.ts";
 import {
   NotFoundError,
   ValidationError,
@@ -26,6 +27,14 @@ export const errorMiddleware = (
     statusCode = 404;
   } else if (err instanceof ConflictError) {
     statusCode = 409;
+  }
+
+  if (statusCode === 500 && config.nodeEnv !== "development") {
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  } else {
+    console.log(err);
   }
 
   res.status(statusCode).json({

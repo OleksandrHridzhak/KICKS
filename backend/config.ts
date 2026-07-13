@@ -11,6 +11,7 @@ if (!jwtSecret) {
 export const config = {
   port: Number(process.env.PORT) || 3337,
   jwtSecret: jwtSecret,
+  nodeEnv: process.env.NODE_ENV,
 } as const;
 
 if (!config.port) {

@@ -8,14 +8,45 @@ datasource db {
 }
 
 model Product {
-  id          String  @id @default(uuid())
+  id          String           @id @default(uuid())
   name        String
   description String
   price       Decimal
+  category    String
+  brand       String
+  variants    ProductVariant[]
+}
+
+model ProductVariant {
+  id          String @id @default(uuid())
+  productId   String
+  variantName String
+  color       String
+
+  product Product        @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sizes   VariantSize[]
+  photos  VariantPhoto[]
+}
+
+model VariantSize {
+  id               String  @id @default(uuid())
+  productVariantId String
+  size        Decimal
+  inStock          Int     @default(0)
+
+  variant ProductVariant @relation(fields: [productVariantId], references: [id], onDelete: Cascade)
+}
+
+model VariantPhoto {
+  id               String @id @default(uuid())
+  productVariantId String
+  photoUrl         String
+
+  variant ProductVariant @relation(fields: [productVariantId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id String @id @default(uuid())
-  email String @unique
+  id       String @id @default(uuid())
+  email    String @unique
   password String
 }
