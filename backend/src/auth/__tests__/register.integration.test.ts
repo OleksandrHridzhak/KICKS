@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, afterAll } from "vitest";
 import request from "supertest";
 import { prisma } from "../../../lib/prisma.ts";
 import app from "../../../index.ts";
+import { REFRESH_TOKEN_NAME, ACCESS_TOKEN_NAME } from "../auth.constants.ts";
 
 describe("Register test", () => {
   beforeEach(async () => {
@@ -12,9 +13,9 @@ describe("Register test", () => {
     await prisma.$disconnect;
   });
 
-  it("it should register a new user", async () => {
+  it("it should register a new user and return correct tokens", async () => {
     const newUser = {
-      email: "new@gamil.com",
+      email: "ne3443w@gmail.com",
       password: "newpasssword123",
     };
 
@@ -23,6 +24,16 @@ describe("Register test", () => {
       .send(newUser);
 
     expect(response.status).toBe(201);
+    const cookie = response.headers["set-cookie"];
+
+    expect(cookie).toBeDefined();
+
+    expect(cookie).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining(`${ACCESS_TOKEN_NAME}=`),
+        expect.stringContaining(`${REFRESH_TOKEN_NAME}=`),
+      ]),
+    );
   });
 
   it("it should return 409", async () => {
@@ -48,6 +59,7 @@ describe("Register test", () => {
       email: email,
       password: "newpasssword123",
     };
+
     const response = await request(app).post("/api/auth/register").send(user);
 
     expect(response.status).toBe(400);

@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import {
   ConflictError,
   NotFoundError,
+  UnauthenticatedError,
   ValidationError,
 } from "../core/error.ts";
 import { type TokenPayload } from "./auth.types.ts";
@@ -78,13 +79,13 @@ export const loginService = async (email: string, password: string) => {
   });
 
   if (user === null) {
-    throw new ValidationError("Invalid email or password");
+    throw new UnauthenticatedError("Invalid email or password");
   }
 
   const isValid = await bcrypt.compare(password, user.password);
 
   if (!isValid) {
-    throw new ValidationError("Invalid email or password");
+    throw new UnauthenticatedError("Invalid email or password");
   }
 
   const accessToken = createAuthToken(
