@@ -6,7 +6,7 @@ import { prisma } from "../../../lib/prisma.ts";
 import { REFRESH_TOKEN_NAME, ACCESS_TOKEN_NAME } from "../auth.constants.ts";
 
 const LOGIN_URL = "/api/auth/login";
-const DEFAULT_EMAIL = "email@gmail.com";
+const DEFAULT_EMAIL = "emai66l@gmail.com";
 const DEFAULT_PASSWORD = "ueru783847h";
 
 describe("login test", () => {

@@ -5,33 +5,15 @@ import {
   ConflictError,
   NotFoundError,
   UnauthenticatedError,
-  ValidationError,
 } from "../core/error.ts";
 import { type TokenPayload } from "./auth.types.ts";
 
+import { createAuthToken } from "../core/jwt.ts";
 import { config } from "../../config.ts";
 import {
   ACCESS_TOKEN_EXPIRES_IN,
   REFRESH_TOKEN_EXPIRES_IN,
 } from "./auth.constants.ts";
-
-const createAuthToken = (
-  id: string,
-  email: string,
-  secret: string,
-  expiresIn: number,
-) => {
-  return jwt.sign(
-    {
-      id,
-      email,
-    },
-    secret,
-    {
-      expiresIn,
-    },
-  );
-};
 
 export const registerService = async (email: string, password: string) => {
   let user = await prisma.user.findUnique({

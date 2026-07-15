@@ -4,20 +4,19 @@ import app from "../../../index.ts";
 import { config } from "../../../config.ts";
 import { prisma } from "../../../lib/prisma.ts";
 import {
-  REFRESH_TOKEN_NAME,
   ACCESS_TOKEN_NAME,
   ACCESS_TOKEN_EXPIRES_IN,
 } from "../auth.constants.ts";
 import bcrypt from "bcrypt";
 import { createAuthToken } from "../../core/jwt.ts";
 
-const LOGOUT_URL = "/api/auth/logout";
-const DEFAULT_EMAIL = "ema8il@gmail.com";
+const ME_URL = "/api/auth/me";
+const DEFAULT_EMAIL = "ema38il@gmail.com";
 const DEFAULT_PASSWORD = "ueru783847h";
 
 const hashedPassword = await bcrypt.hash(DEFAULT_PASSWORD, 10);
 
-describe("logout test", () => {
+describe("me test", () => {
   beforeEach(async () => {
     await prisma.user.deleteMany();
   });
@@ -26,7 +25,7 @@ describe("logout test", () => {
     await prisma.$disconnect();
   });
 
-  it("should return 204 ", async () => {
+  it("should return user data with valid token", async () => {
     const user = await prisma.user.create({
       data: {
         email: DEFAULT_EMAIL,
@@ -42,22 +41,29 @@ describe("logout test", () => {
     );
 
     const response = await request(app)
-      .post("/api/auth/logout")
+      .get(ME_URL)
       .set("Cookie", `${ACCESS_TOKEN_NAME}=${accessToken}`);
 
-    expect(response.status).toBe(204);
+    expect(response.status).toBe(200);
 
-    const cookie = response.headers["set-cookie"];
-
-    expect(cookie).toEqual(
-      expect.arrayContaining([
-        expect.stringContaining(`${ACCESS_TOKEN_NAME}=;`),
-        expect.stringContaining(`${REFRESH_TOKEN_NAME}=;`),
-      ]),
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        id: user.id,
+        email: DEFAULT_EMAIL,
+      }),
     );
   });
+
   it("should return 401 without token", async () => {
-    const response = await request(app).post(LOGOUT_URL);
+    const response = await request(app).get(ME_URL);
+
+    expect(response.status).toBe(401);
+  });
+
+  it("should return 401 with invalid token", async () => {
+    const response = await request(app)
+      .get(ME_URL)
+      .set("Cookie", `${ACCESS_TOKEN_NAME}=invalid-token`);
 
     expect(response.status).toBe(401);
   });
