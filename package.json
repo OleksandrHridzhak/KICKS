@@ -1,0 +1,29 @@
+{
+  "name": "kicks",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend"
+  ],
+  "description": "Stack",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace apps/frontend\" \"npm run dev --workspace apps/backend\"",
+    "test": "npm run test --workspaces"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OleksandrHridzhak/KICKS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/OleksandrHridzhak/KICKS/issues"
+  },
+  "homepage": "https://github.com/OleksandrHridzhak/KICKS#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
