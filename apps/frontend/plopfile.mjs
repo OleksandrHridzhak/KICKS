@@ -1,4 +1,5 @@
 export default function (plop) {
+  console.log("cwd:", process.cwd());
   plop.setGenerator("component", {
     description: "Generate a React component with a SCSS module",
     prompts: [
@@ -7,6 +8,7 @@ export default function (plop) {
         name: "name",
         message: "Enter the component name (e.g., CustomButton):",
         validate: (value) => {
+          console.log("cwd:", process.cwd());
           if (/.+/.test(value)) {
             return true;
           }

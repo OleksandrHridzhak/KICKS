@@ -17,7 +17,7 @@
 - Understand the project structure and existing patterns before making changes.
 - Make only changes that are explicitly requested by the user.
 - Do not refactor, rename, reorganize, or improve existing code unless specifically asked
-- Prefer the smallest possible change that solves the requested task.
+- Prefer the small change that solves the requested task.
 - Preserve existing architecture and conventions.
 
 ## Suggestions

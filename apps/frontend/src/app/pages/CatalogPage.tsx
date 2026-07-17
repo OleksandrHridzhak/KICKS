@@ -1,4 +1,4 @@
-import styles from "./CatalogPage.module.css";
+import styles from "./CatalogPage.module.scss";
 
 import Banner from "@/shared/components/Banner/Banner";
 import Wrapper from "@/shared/components/Wrapper/Wrapper";

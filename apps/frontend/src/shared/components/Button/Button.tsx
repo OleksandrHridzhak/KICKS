@@ -10,6 +10,7 @@ type fontSize = "fs12" | "fs14" | "fs16" | "fs18" | "fs20" | "fs24";
 type ButtonProps = {
   children: React.ReactNode;
   href?: string;
+  type?: "button" | "submit" | "reset";
 
 
   isFullWidth?: boolean;
@@ -17,6 +18,7 @@ type ButtonProps = {
   fontSize: fontSize | `${fontSize}-${fontSize}`;
   height: height | `${height}-${height}`;
   width?: "full" | "fit" | "square";
+  justify?: "center" | "between"
   borderRadius?: borderRadius | `${borderRadius}-${borderRadius}`;
   variant?: "primary" | "secondary" | "outline" | "ghost";
 
@@ -24,29 +26,34 @@ type ButtonProps = {
 };
 
 function Button({
-
   children,
   isFullWidth = true,
   height,
   width = "full",
   borderRadius = "br8",
   variant = "secondary",
+  justify,
   href,
+  type = "button",
   className = "",
 }: ButtonProps) {
+
+  const commonClasses = clsx(
+    styles.button,
+    isFullWidth && styles.widthFull,
+    styles[variant],
+    styles[height],
+    styles[borderRadius],
+    styles[`justify-${justify}`],
+    styles[`${width}Width`],
+    className,
+  );
+
   if (href) {
     return (
       <Link
         to={href}
-        className={clsx(
-          styles.button,
-          isFullWidth && styles.widthFull,
-          styles[variant],
-          styles[height],
-          styles[borderRadius],
-          styles[`${width}Width`],
-          className,
-        )}
+        className={commonClasses}
       >
         {children}
       </Link>
@@ -54,15 +61,8 @@ function Button({
   }
   return (
     <button
-      className={clsx(
-        styles.button,
-        styles[height],
-        isFullWidth && styles.widthFull,
-        styles[variant],
-        styles[borderRadius],
-        styles[`${width}Width`],
-        className,
-      )}
+      type={type}
+      className={commonClasses}
     >
       {children}
     </button>

@@ -5,6 +5,7 @@ import authRouter from "./src/auth/auth.routes.ts";
 import productRouter from "./src/product/product.routes.ts";
 import { config } from "./config.ts";
 import { errorMiddleware } from "./src/middleware/error.middleware.ts";
+import cors from "cors";
 
 const app: Express = express();
 
@@ -13,7 +14,7 @@ const app: Express = express();
 if (config.nodeEnv === "development") {
   app.use(morgan("dev"));
 }
-
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 

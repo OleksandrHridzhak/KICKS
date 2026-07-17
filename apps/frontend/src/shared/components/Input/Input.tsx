@@ -1,11 +1,12 @@
 import styles from "./Input.module.scss";
 import clsx from "clsx";
-import Icon from "@/shared/components/Icon/Icon";
 
 type InputProps = {
   type: "text" | "email" | "password";
   className?: string;
   placeholder?: string;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 
   titleText?: string;
   helperText?: string;
@@ -14,6 +15,8 @@ type InputProps = {
 function Input({
   type,
   placeholder = "",
+  value,
+  onChange,
   titleText,
   helperText,
   className,
@@ -27,6 +30,8 @@ function Input({
           <input
             type={type}
             placeholder={placeholder}
+            value={value}
+            onChange={onChange}
             className={clsx(styles.input, className)}
           />
           {/* <div className={styles.trailingIcons}>

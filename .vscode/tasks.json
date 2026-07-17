@@ -4,7 +4,7 @@
     {
       "label": "Generate CSS",
       "type": "shell",
-      "command": "node frontend/scripts/gen-css.js ${file}"
+      "command": "node apps/frontend/scripts/gen-css.js ${file}"
     }
   ]
 }

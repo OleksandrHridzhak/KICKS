@@ -6,12 +6,20 @@
   border-radius: 12px;
 
   // For links
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 
   text-decoration: none;
   cursor: pointer;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 // TODO Refactor these functions to one mixin
