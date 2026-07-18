@@ -10,7 +10,13 @@
 }
 
 .formSection {
+  @media (min-width: 768px) {
+    flex: 4;
+  }
 }
 
 .promoSection {
+  @media (min-width: 768px) {
+    flex: 6;
+  }
 }

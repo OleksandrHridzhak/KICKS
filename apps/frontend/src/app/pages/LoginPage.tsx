@@ -1,36 +1,14 @@
 import { LoginForm } from "@/features/auth/components/LoginForm/LoginForm";
-import styles from "./LoginPage.module.scss"
+import AuthLayout from "@/features/auth/components/AuthLayout/AuthLayout";
 import Wrapper from "@/shared/components/Wrapper/Wrapper";
 
-// type LoginPageProps = {
-
-// }
-
-
-
 function LoginPage() {
-
   return (
     <Wrapper>
-      {/* <div className={styles.mainContainer} >
-
-        <div className={styles.formSection} >
-
-        </div>
-        <div className={styles.bannerSection} >
-          <div className={styles.fakeAdverstment}>
-
-          </div>
-        </div>
-
-
-      </div> */}
-
-      <LoginForm>
-
-      </LoginForm>
+      <AuthLayout>
+        <LoginForm />
+      </AuthLayout>
     </Wrapper>
-
   );
 }
 

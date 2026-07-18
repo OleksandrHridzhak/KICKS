@@ -140,6 +140,11 @@ $font-sizes: (
   color: white;
 }
 
+.outline {
+  background: transparent;
+  border: 1px solid black;
+}
+
 .ghost {
   background-color: #f4f2f2;
   color: var(--text-heading);

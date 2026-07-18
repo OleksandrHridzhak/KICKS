@@ -1,0 +1,36 @@
+.checkboxBlock {
+}
+
+.container {
+}
+
+.externalSerivcesAuthBlock {
+}
+
+.forgotPasswordLink {
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3.5vw, 24px);
+}
+
+.formHeader {
+}
+
+.textLink {
+  text-decoration: underline 1px;
+}
+
+.textLink:hover {
+  text-decoration: underline 1px;
+}
+.inputsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3.5vw, 20px);
+}
+
+.legalTextBlock {
+}

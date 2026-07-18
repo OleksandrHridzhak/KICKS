@@ -1,0 +1,50 @@
+.text {
+  font-family: var(--font-body, sans-serif);
+  color: #232321;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.semiBold {
+  font-weight: 600;
+}
+
+$fontSizes: (
+  "fs10": 10px,
+  "fs12": 12px,
+  "fs14": 14px,
+  "fs16": 16px,
+  "fs20": 20px,
+  "fs24": 24px,
+  "fs32": 32px,
+  "fs36": 36px,
+  "fs40": 40px,
+);
+
+@each $name, $size in $fontSizes {
+  .#{$name} {
+    font-size: $size;
+  }
+}
+
+@each $mobile-name, $mobile-size in $fontSizes {
+  @each $desktop-name, $desktop-size in $fontSizes {
+    .#{$mobile-name}-#{$desktop-name} {
+      font-size: clamp(#{$mobile-size}, 3.5vw, #{$desktop-size});
+    }
+  }
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}

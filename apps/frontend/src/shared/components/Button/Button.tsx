@@ -12,13 +12,12 @@ type ButtonProps = {
   href?: string;
   type?: "button" | "submit" | "reset";
 
-
   isFullWidth?: boolean;
 
-  fontSize: fontSize | `${fontSize}-${fontSize}`;
+  fontSize?: fontSize | `${fontSize}-${fontSize}`;
   height: height | `${height}-${height}`;
   width?: "full" | "fit" | "square";
-  justify?: "center" | "between"
+  justify?: "center" | "between";
   borderRadius?: borderRadius | `${borderRadius}-${borderRadius}`;
   variant?: "primary" | "secondary" | "outline" | "ghost";
 
@@ -37,7 +36,6 @@ function Button({
   type = "button",
   className = "",
 }: ButtonProps) {
-
   const commonClasses = clsx(
     styles.button,
     isFullWidth && styles.widthFull,
@@ -51,19 +49,13 @@ function Button({
 
   if (href) {
     return (
-      <Link
-        to={href}
-        className={commonClasses}
-      >
+      <Link to={href} className={commonClasses}>
         {children}
       </Link>
     );
   }
   return (
-    <button
-      type={type}
-      className={commonClasses}
-    >
+    <button type={type} className={commonClasses}>
       {children}
     </button>
   );

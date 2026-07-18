@@ -1,21 +1,12 @@
 .container {
   background-color: #ffffff;
   border-radius: 16px;
-  /* 24px по вертикалі, динамічно від 16px до 24px по горизонталі */
   padding: 24px clamp(16px, 13.03px + 0.76vw, 24px);
   display: flex;
   flex-direction: column;
-  /* Від 24px до 64px */
   gap: clamp(24px, 9.14px + 3.81vw, 64px);
-
   width: 100%;
 }
-
-.title {
-  /* Від 24px до 36px */
-  font-size: clamp(24px, 19.54px + 1.14vw, 36px);
-}
-
 .upContainer {
   display: flex;
   flex-direction: column;
@@ -25,15 +16,9 @@
 }
 
 .list {
-  /* Від 14px до 16px */
-  font-size: clamp(14px, 13.26px + 0.19vw, 16px);
   padding-left: 20px;
 }
-
-.text {
-  /* Від 14px до 16px */
-  font-size: clamp(14px, 13.26px + 0.19vw, 16px);
-}
-
-.buttonArrow {
+// TODO: It does't depend on globar variables.
+.list li::marker {
+  color: rgb(49 49 49 / 80%);
 }

@@ -1,3 +1,48 @@
 .container {
-  width: 400px;
+  width: 100%;
+  padding: 0;
+}
+
+%formSection {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3.5vw, 20px);
+}
+
+.externalSerivcesAuthBlock {
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3.5vw, 24px);
+}
+
+.formDevider {
+}
+
+.formHeader {
+}
+
+.genderBlock {
+}
+
+.genderCheckBoxes {
+  display: flex;
+  gap: 32px;
+}
+
+.loginDetailsBlock {
+}
+
+.yourNameBlock {
+}
+
+.externalSerivcesAuthBlock,
+.genderBlock,
+.loginDetailsBlock,
+.yourNameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3.5vw, 20px);
 }

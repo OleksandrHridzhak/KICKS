@@ -1,0 +1,23 @@
+.heading {
+  font-family: var(--font-heading);
+  color: #232321;
+}
+
+$fontSizes: (
+  "fs12": 12px,
+  "fs14": 14px,
+  "fs16": 16px,
+  "fs20": 20px,
+  "fs24": 24px,
+  "fs32": 32px,
+  "fs36": 36px,
+  "fs48": 48px,
+);
+
+@each $mobile-name, $mobile-size in $fontSizes {
+  @each $desktop-name, $desktop-size in $fontSizes {
+    .#{$mobile-name}-#{$desktop-name} {
+      font-size: clamp(#{$mobile-size}, 4vw, #{$desktop-size});
+    }
+  }
+}

@@ -1,19 +1,17 @@
-import styles from './AuthLayout.module.scss';
-import ClubPromo from '../ClubPromo/ClubPromo';
-import type React from 'react';
+import styles from "./AuthLayout.module.scss";
+import ClubPromo from "../ClubPromo/ClubPromo";
+import type React from "react";
 
 export type AuthLayoutProps = {
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
 function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <>
-      <div className={styles.container} >
-        <div className={styles.formSection} >
-          {children}
-        </div>
-        <div className={styles.promoSection} >
+      <div className={styles.container}>
+        <div className={styles.formSection}>{children}</div>
+        <div className={styles.promoSection}>
           <ClubPromo />
         </div>
       </div>

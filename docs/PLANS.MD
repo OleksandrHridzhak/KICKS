@@ -1,11 +1,7 @@
-- AUto clamp
+- AUto clamp calculator
+
+- Create a new eslint or prettier rule for import sorting
 
 ## Simple tasks for agents
 
-### Not found page
-
-- Подивися у папку src/app/pages на фронтенді і візьми струкруру файлів і те як я їх пишу. Створи дуже простий компонент під назвою NotFoundPage який буде виводити по центру стоірінки 404 The page wasn't found. І підключи її до роутера по шляху зірочка(якщо я правильно памятаю). Також створи файл цсс для цього компоненту де пропиши бувально один простий клас стилів для шрифту цієї сторінки і все.
-
-### Login the same as register
-
-Подвитися папку RegisterPage там я підключв аус лейаут. Підклчи так само до лоігн пейджі. І ддодай його в ретьорн так само.
+- Add className prop to ALL SHARED COMPONENTS. /shared and import clsx for that in each. Для тих тегів які обгортають веь компоеннт тобто батьківських.
