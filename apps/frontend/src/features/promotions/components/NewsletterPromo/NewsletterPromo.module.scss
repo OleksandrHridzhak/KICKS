@@ -1,18 +1,44 @@
 .container {
   border-radius: clamp(24px, 4vw, 48px);
   overflow: hidden;
-  margin-top: 12px;
   margin-bottom: 12px;
+  
+
   background-color: var(--primary-color);
   color: var(--color-white);
-  padding: 24px 16px;
+    padding-top:clamp(16px,4vw,64px) ;
+  padding-inline:clamp(16px,4vw,64px) ;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .container {
     display: flex;
+    align-items: center;
+  }
+
+  .subscriptionPart {
+    flex: 1;
+  }
+
+  .logoWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
   }
 }
+
+.logoWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (min-width:  768px) {
+  .logoWrapper {
+    justify-content: center;
+
+  }
+}
+
 
 .subscriptionPart {
   max-width: 510px;
@@ -31,6 +57,23 @@
   display: flex;
   margin-top: 24px;
   gap: 4px;
+  align-items: flex-end;
+
+  input,
+  button {
+    height: clamp(40px, 4vw, 48px);
+    min-height: clamp(40px, 4vw, 48px);
+  }
+}
+
+.emailInputGroup {
+        flex: 1;
+      max-width: 280px;
+  
+
+  @media (min-width: 1024px) {
+    max-width: 340px;
+  }
 }
 
 .emailInput {
@@ -50,6 +93,18 @@
 }
 
 .logoPart {
-  width: clamp(200px, 20vw, 380px);
+  width: clamp(200px, 29vw, 380px);
   margin: 40px 0 12px 0;
+  position: relative;
+}
+
+.plusIcon {
+  position: absolute;
+  color: #FFA52F;
+  width: clamp(18px, 2.5vw, 26px);
+  height: clamp(18px, 2.5vw, 26px);
+  top: 0;
+  right: 0;
+
+  transform: translate(50%, -50%);
 }

@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import styles from "./Heading.module.scss";
 
-type fontSize = "fs12" | "fs14" | "fs16" | "fs18" | "fs20" | "fs24" | "fs36";
+type fontSize = "fs12" | "fs14" | "fs16" | "fs18" | "fs20" | "fs24" | "fs32" | "fs36" | "fs48";
 
 export type HeadingProps = {
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -10,13 +10,13 @@ export type HeadingProps = {
   children: React.ReactNode;
   uppercase?: boolean;
   className?: string;
-  color?: "default" | "light" | "footer";
+  color?: "default" | "light" | "footer" | "white";
   srOnly?: boolean;
 } & React.HTMLAttributes<HTMLHeadingElement>;
 
 function Heading({
   tag: Tag,
-  fontSize,
+  fontSize, 
   children,
   uppercase = false,
   color = "default",

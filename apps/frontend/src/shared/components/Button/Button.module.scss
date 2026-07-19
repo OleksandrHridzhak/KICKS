@@ -22,6 +22,51 @@
   justify-content: center;
 }
 
+
+/* Button widths */
+.fullWidth {
+  width: 100%;
+}
+
+.fitWidth {
+  width: fit-content;
+}
+
+.squareWidth {
+  aspect-ratio: 1;
+  padding-inline: 0;
+}
+
+/* Variants (Appearance) */
+
+.primary {
+  background-color: var(--button-primary-background);
+  color: white;
+  font-weight: var(--weight-semibold);
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+.secondary {
+  background-color: #232321;
+  color: white;
+}
+
+.outline {
+  background: transparent;
+  border: 1px solid black;
+}
+
+.ghost {
+  background-color: #f4f2f2;
+  color: var(--text-heading);
+  font-weight: var(--weight-semibold);
+  font-size: 14px;
+  font-family: var(--font-body);
+}
+
+
 // TODO Refactor these functions to one mixin
 /* Sizes */
 
@@ -108,47 +153,4 @@ $font-sizes: (
       }
     }
   }
-}
-
-/* Button widths */
-.fullWidth {
-  width: 100%;
-}
-
-.fitWidth {
-  width: fit-content;
-}
-
-.squareWidth {
-  aspect-ratio: 1;
-  padding-inline: 0;
-}
-
-/* Variants (Appearance) */
-
-.primary {
-  background-color: var(--button-primary-background);
-  color: white;
-  font-weight: var(--weight-semibold);
-  font-size: 12px;
-  border-radius: 12px;
-  padding: 12px 16px;
-}
-
-.secondary {
-  background-color: #232321;
-  color: white;
-}
-
-.outline {
-  background: transparent;
-  border: 1px solid black;
-}
-
-.ghost {
-  background-color: #f4f2f2;
-  color: var(--text-heading);
-  font-weight: var(--weight-semibold);
-  font-size: 14px;
-  font-family: var(--font-body);
 }
