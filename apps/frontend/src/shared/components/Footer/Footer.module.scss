@@ -1,76 +1,12 @@
 .footer {
-  border-radius: clamp(24px, 4vw, 48px);
-  overflow: hidden;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  background-color: var(--primary-color);
-}
-
-.topPart {
-  color: var(--color-white);
-  padding: 24px 16px;
-}
-
-@media (min-width: 1024px) {
-  .topPart {
-    display: flex;
-  }
-}
-
-.subscriptionPart {
-  max-width: 510px;
-}
-
-.suscriptionTitle {
-  font-size: clamp(32px, 4vw, 48px);
-  text-transform: uppercase;
-}
-
-.subscriptionDescription {
-  font-size: calamp(16px, 1.5vw, 20px);
-}
-
-.subscriptionForm {
-  display: flex;
-  margin-top: 24px;
-  gap: 4px;
-}
-
-.emailInput {
-  outline: white;
-  border-color: white;
-  color: white;
-}
-.emailInput::placeholder {
-  outline: white;
-  border-color: white;
-  color: white;
-}
-
-.emailInput:focus {
-  outline: white;
-  border-color: white;
-}
-
-.submitButton {
-  font-size: 12px;
-  border-radius: 8px;
-  border: none;
-  color: white;
-  padding: 12px 16px;
-  background-color: #232321;
-}
-
-.logoPart {
-  width: clamp(200px, 20vw, 380px);
-  margin: 40px 0 12px 0;
-}
-
-.bottomPart {
   background-color: var(--surface-inverse);
   border-radius: clamp(24px, 4vw, 48px);
   position: relative;
   padding: 24px 16px 150px 16px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .sectionHeading {

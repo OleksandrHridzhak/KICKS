@@ -1,6 +1,6 @@
 import styles from "./CatalogPage.module.scss";
 
-import Banner from "@/shared/components/Banner/Banner";
+import PromoBanner from "@/features/promotions/components/PromoBanner/PromoBanner";
 import Wrapper from "@/shared/components/Wrapper/Wrapper";
 import ProductCard from "@/features/products/ProductCard/ProductCard";
 import CatalogHeader from "@/features/products/CatalogHeader/CatalogHeader";
@@ -10,7 +10,7 @@ function CatalogPage() {
   return (
     <>
       <main>
-        <Banner />
+        <PromoBanner />
 
         <Wrapper>
           <CatalogHeader />

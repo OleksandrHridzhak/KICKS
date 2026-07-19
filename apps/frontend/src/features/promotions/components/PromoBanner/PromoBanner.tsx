@@ -1,8 +1,8 @@
-import styles from "./Banner.module.css";
+import styles from "./PromoBanner.module.css";
 import bgPhoto from "@/shared/assets/discout-banner-photo.jpg";
 import Wrapper from "@/shared/components/Wrapper/Wrapper";
 
-function Banner() {
+function PromoBanner() {
   return (
     <Wrapper>
       <div className={styles.bannerBlock}>
@@ -21,4 +21,4 @@ function Banner() {
   );
 }
 
-export default Banner;
+export default PromoBanner;

@@ -1,0 +1,55 @@
+.container {
+  border-radius: clamp(24px, 4vw, 48px);
+  overflow: hidden;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: var(--primary-color);
+  color: var(--color-white);
+  padding: 24px 16px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: flex;
+  }
+}
+
+.subscriptionPart {
+  max-width: 510px;
+}
+
+.suscriptionTitle {
+  font-size: clamp(32px, 4vw, 48px);
+  text-transform: uppercase;
+}
+
+.subscriptionDescription {
+  font-size: clamp(16px, 1.5vw, 20px);
+}
+
+.subscriptionForm {
+  display: flex;
+  margin-top: 24px;
+  gap: 4px;
+}
+
+.emailInput {
+  outline: white;
+  border-color: white;
+  color: white;
+}
+.emailInput::placeholder {
+  outline: white;
+  border-color: white;
+  color: white;
+}
+
+.emailInput:focus {
+  outline: white;
+  border-color: white;
+}
+
+.logoPart {
+  width: clamp(200px, 20vw, 380px);
+  margin: 40px 0 12px 0;
+}

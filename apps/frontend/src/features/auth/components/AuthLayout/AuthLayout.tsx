@@ -1,5 +1,5 @@
 import styles from "./AuthLayout.module.scss";
-import ClubPromo from "../ClubPromo/ClubPromo";
+import ClubPromo from "@/features/promotions/components/ClubPromo/ClubPromo";
 import type React from "react";
 
 export type AuthLayoutProps = {
