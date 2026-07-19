@@ -9,6 +9,7 @@ import CatalogFilter from "@/features/products/CatalogFilter/CatalogFilter";
 function CatalogPage() {
   return (
     <>
+    {/* TODO */}
       <main>
         <PromoBanner />
 
