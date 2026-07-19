@@ -1,7 +1,13 @@
 import styles from "./Wrapper.module.css";
+import clsx from "clsx";
 
-function Wrapper({ children }: React.PropsWithChildren) {
-  return <div className={styles.wrapper}>{children}</div>;
+interface WrapperProps {
+  children?: React.ReactNode;
+  className?: string;
+}
+
+function Wrapper({ children, className }: WrapperProps) {
+  return <div className={clsx(styles.wrapper, className)}>{children}</div>;
 }
 
 export default Wrapper;

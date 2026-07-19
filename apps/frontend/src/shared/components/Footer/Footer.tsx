@@ -20,7 +20,7 @@ function Footer() {
             <form className={styles.subscriptionForm}>
               <Input
                 type="email"
-                className={styles.emailInput}
+                classNameInput={styles.emailInput}
                 placeholder="Enter email"
               />
 
