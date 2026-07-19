@@ -30,4 +30,51 @@ export default function (plop) {
       },
     ],
   });
+
+  plop.setGenerator("feature", {
+    description: "Generate a new feature structure",
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "Enter the feature name (e.g., shoppingCart):",
+        validate: (value) => {
+          if (/.+/.test(value)) {
+            return true;
+          }
+          return "Feature name is required";
+        },
+      },
+      {
+        type: "checkbox",
+        name: "subfolders",
+        message: "Select subfolders to generate:",
+        choices: [
+          { name: "api", checked: true },
+          { name: "assets", checked: false },
+          { name: "components", checked: true },
+          { name: "hooks", checked: false },
+          { name: "stores", checked: false },
+          { name: "types", checked: false },
+          { name: "utils", checked: false },
+        ],
+      },
+    ],
+    actions: (data) => {
+      const actions = [];
+      const basePath = "src/features/{{camelCase name}}";
+
+      if (data.subfolders && data.subfolders.length > 0) {
+        data.subfolders.forEach((folder) => {
+          actions.push({
+            type: "add",
+            path: `${basePath}/${folder}/.gitkeep`,
+            templateFile: "plop-templates/feature/gitkeep.hbs",
+          });
+        });
+      }
+
+      return actions;
+    },
+  });
 }
