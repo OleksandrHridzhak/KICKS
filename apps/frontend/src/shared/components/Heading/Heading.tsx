@@ -8,19 +8,32 @@ export type HeadingProps = {
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   fontSize: fontSize | `${fontSize}-${fontSize}`;
   children: React.ReactNode;
+  uppercase?: boolean;
   className?: string;
+  color?: "default" | "light" | "footer";
+  srOnly?: boolean;
 } & React.HTMLAttributes<HTMLHeadingElement>;
 
 function Heading({
   tag: Tag,
   fontSize,
   children,
+  uppercase = false,
+  color = "default",
+  srOnly = false,
   className,
   ...props
 }: HeadingProps) {
   return (
     <Tag
-      className={clsx(styles.heading, styles[fontSize], className)}
+      className={clsx(
+        styles.heading,
+        styles[fontSize],
+        styles[`${color}Color`],
+        uppercase && styles.uppercase,
+        srOnly && styles.srOnly,
+        className
+      )}
       {...props}
     >
       {children}

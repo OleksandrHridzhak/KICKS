@@ -1,7 +1,27 @@
+.link {
+  font-family: var(--font-body);
+}
+
 .underline {
   text-decoration: underline 1px;
 }
 
 .underline:hover {
   text-decoration: underline 1px;
+}
+
+.defaultColor {
+  color: #232321;
+}
+
+.inverseColor {
+  color: #E7E7E3;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.semiBold {
+  font-weight: 600;
 }

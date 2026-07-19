@@ -22,6 +22,7 @@ export type TextProps = {
   opacity?: "100" | "80" | "75";
   children: React.ReactNode;
   className?: string;
+  color?: "default" | "inverse";
 } & React.HTMLAttributes<HTMLElement>;
 
 function Text({
@@ -30,6 +31,7 @@ function Text({
   fontWeight = "regular",
   children,
   opacity = "100",
+  color = "default",
   className,
   ...props
 }: TextProps) {
@@ -40,7 +42,8 @@ function Text({
         styles[fontSize],
         styles[fontWeight],
         styles[`opacity-${opacity}`],
-        className,
+        styles[`${color}Color`],
+        className
       )}
       {...props}
     >

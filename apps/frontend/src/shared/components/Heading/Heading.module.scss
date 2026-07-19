@@ -1,6 +1,17 @@
 .heading {
   font-family: var(--font-heading);
+}
+
+.defaultColor {
   color: #232321;
+}
+
+.lightColor {
+  color: #ffffff;
+}
+
+.footerColor {
+  color: #FFA52F;
 }
 
 $fontSizes: (
@@ -20,4 +31,20 @@ $fontSizes: (
       font-size: clamp(#{$mobile-size}, 4vw, #{$desktop-size});
     }
   }
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
