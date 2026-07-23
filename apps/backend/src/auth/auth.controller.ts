@@ -1,4 +1,5 @@
 import { type Request, type Response } from "express";
+import type { RegisterDto, LoginDto } from "./auth.schema.ts";
 import {
   registerService,
   loginService,
@@ -13,14 +14,16 @@ import {
 } from "./auth.constants.ts";
 
 export const registerController = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-
-  const tokens = await registerService(email, password);
+  const data: RegisterDto = req.body;
+  const tokens = await registerService(data);
 
   res.cookie(REFRESH_TOKEN_NAME, tokens.refreshToken, {
     httpOnly: true,
-    maxAge: REFRESH_TOKEN_COOKIE_MAX_AGE,
     path: "/api/auth/refresh",
+
+    ...(data.rememberMe && {
+      maxAge: REFRESH_TOKEN_COOKIE_MAX_AGE,
+    }),
   });
 
   res.cookie(ACCESS_TOKEN_NAME, tokens.accessToken, {
@@ -32,21 +35,23 @@ export const registerController = async (req: Request, res: Response) => {
 };
 
 export const loginController = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-
-  const tokens = await loginService(email, password);
+  const data: LoginDto = req.body;
+  const tokens = await loginService(data);
 
   res.cookie(REFRESH_TOKEN_NAME, tokens.refreshToken, {
     httpOnly: true,
-    maxAge: REFRESH_TOKEN_COOKIE_MAX_AGE,
     path: "/api/auth/refresh",
+
+    ...(data.rememberMe && {
+      maxAge: REFRESH_TOKEN_COOKIE_MAX_AGE,
+    }),
   });
 
   res.cookie(ACCESS_TOKEN_NAME, tokens.accessToken, {
     httpOnly: true,
     maxAge: ACCESS_TOKEN_COOKIE_MAX_AGE,
   });
-  return res.sendStatus(200);
+  return res.sendStatus(200); //TODO: SHOULD I RETURN SOME DATA?
 };
 
 export const logoutController = async (req: Request, res: Response) => {

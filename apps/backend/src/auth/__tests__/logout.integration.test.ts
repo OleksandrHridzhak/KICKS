@@ -17,7 +17,7 @@ const DEFAULT_PASSWORD = "ueru783847h";
 
 const hashedPassword = await bcrypt.hash(DEFAULT_PASSWORD, 10);
 
-describe("logout test", () => {
+describe("Logo out test", () => {
   beforeEach(async () => {
     await prisma.user.deleteMany();
   });

@@ -12,10 +12,20 @@ import { createAuthToken } from "../core/jwt.ts";
 import { config } from "../../config.ts";
 import {
   ACCESS_TOKEN_EXPIRES_IN,
+  REFRESH_SESSION_TOKEN_EXPIRES_IN,
   REFRESH_TOKEN_EXPIRES_IN,
 } from "./auth.constants.ts";
 
-export const registerService = async (email: string, password: string) => {
+import type { RegisterDto, LoginDto } from "./auth.schema.ts";
+
+export const registerService = async ({
+  email,
+  password,
+  gender,
+  firstName,
+  lastName,
+  rememberMe,
+}: RegisterDto) => {
   let user = await prisma.user.findUnique({
     where: {
       email: email,
@@ -29,7 +39,10 @@ export const registerService = async (email: string, password: string) => {
 
   user = await prisma.user.create({
     data: {
-      email: email,
+      email,
+      gender,
+      firstName,
+      lastName,
       password: encryptedPassword,
     },
   });
@@ -44,7 +57,8 @@ export const registerService = async (email: string, password: string) => {
     user.id,
     user.email,
     config.jwtRefreshSecret,
-    REFRESH_TOKEN_EXPIRES_IN,
+
+    rememberMe ? REFRESH_TOKEN_EXPIRES_IN : REFRESH_SESSION_TOKEN_EXPIRES_IN,
   );
 
   return {
@@ -53,7 +67,11 @@ export const registerService = async (email: string, password: string) => {
   };
 };
 
-export const loginService = async (email: string, password: string) => {
+export const loginService = async ({
+  email,
+  password,
+  rememberMe,
+}: LoginDto) => {
   const user = await prisma.user.findUnique({
     where: {
       email: email,
@@ -80,13 +98,13 @@ export const loginService = async (email: string, password: string) => {
     user.id,
     user.email,
     config.jwtRefreshSecret,
-    REFRESH_TOKEN_EXPIRES_IN,
+    rememberMe ? REFRESH_TOKEN_EXPIRES_IN : REFRESH_SESSION_TOKEN_EXPIRES_IN,
   );
 
   return {
     accessToken,
     refreshToken,
-  };
+  }; //TODO: SHOULD I RETURN SOMETHING MORE THAN TWO TOKENS?
 };
 
 export const refreshService = async (refreshToken: string) => {
@@ -117,5 +135,8 @@ export const meService = async (userId: string) => {
   return {
     id: user.id,
     email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    gender: user.gender,
   };
 };

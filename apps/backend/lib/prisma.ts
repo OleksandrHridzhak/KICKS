@@ -8,3 +8,5 @@ const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
 export { prisma };
+
+//TODO: MOVE IT IN SRC IN CORE
