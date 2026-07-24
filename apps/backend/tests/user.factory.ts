@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { prisma } from "../lib/prisma.ts";
+import { prisma } from "../src/core/prisma.ts";
 import { createAuthToken } from "../src/core/jwt.ts";
 import bcrypt from "bcrypt";
 import type {

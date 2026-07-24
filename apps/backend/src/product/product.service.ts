@@ -1,5 +1,7 @@
-import { prisma } from "../../lib/prisma.ts";
+import { prisma } from "../core/prisma.ts";
 import { Prisma } from "../generated/prisma/client.ts";
+
+export const getProductsService = () => {};
 
 export const createProductService = async (data: Prisma.ProductCreateInput) => {
   return prisma.product.create({
@@ -18,6 +20,7 @@ export const updateProductService = async (
     data,
   });
 };
+
 export const deleteProductService = async (id: string) => {
   return prisma.product.delete({
     where: {

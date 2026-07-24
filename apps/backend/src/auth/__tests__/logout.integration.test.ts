@@ -1,7 +1,7 @@
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import request from "supertest";
 import app from "../../../index.ts";
-import { prisma } from "../../../lib/prisma.ts";
+import { prisma } from "../../core/prisma.ts";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../auth.constants.ts";
 import { authUserFactory } from "../../../tests/user.factory.ts";
 
