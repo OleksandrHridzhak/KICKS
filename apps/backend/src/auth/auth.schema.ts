@@ -1,6 +1,7 @@
 import * as z from "zod";
 import { Gender } from "../generated/prisma/enums.ts";
 
+// Register schema ---
 export const registerSchema = z.object({
   email: z.email("Invalid email"),
   password: z
@@ -19,6 +20,7 @@ export const registerSchema = z.object({
 
 export type RegisterDto = z.infer<typeof registerSchema>;
 
+// Login shema ---
 export const loginSchema = z.object({
   email: z.email(),
   password: z.string().nonempty("Password is required"),

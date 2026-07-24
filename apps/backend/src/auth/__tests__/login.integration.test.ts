@@ -1,13 +1,13 @@
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import request from "supertest";
-import bcrypt from "bcrypt";
 import app from "../../../index.ts";
 import { prisma } from "../../../lib/prisma.ts";
-import { REFRESH_TOKEN_NAME, ACCESS_TOKEN_NAME } from "../auth.constants.ts";
+import { REFRESH_TOKEN, ACCESS_TOKEN } from "../auth.constants.ts";
+import { userFactory } from "../../../tests/user.factory.ts";
 
 const LOGIN_URL = "/api/auth/login";
-const DEFAULT_EMAIL = "emai66l@gmail.com";
-const DEFAULT_PASSWORD = "ueru783847h";
+const FAKE_EMAIL = "emai66l@gmail.com";
+const FAKE_PASSWORD = "ueru783847h";
 
 describe("login test", () => {
   beforeEach(async () => {
@@ -18,77 +18,64 @@ describe("login test", () => {
     await prisma.$disconnect();
   });
 
-  it("should login successfully with valid credentials and returns valid tokens", async () => {
-    const hashedPassword = await bcrypt.hash(DEFAULT_PASSWORD, 10);
+  describe("POST", () => {
+    it("should login successfully with valid credentials and returns valid tokens", async () => {
+      const user = await userFactory();
 
-    await prisma.user.create({
-      data: {
-        email: DEFAULT_EMAIL,
-        password: hashedPassword,
-      },
+      const response = await request(app).post(LOGIN_URL).send({
+        email: user.email,
+        password: user.rawPassword,
+      });
+
+      expect(response.status).toBe(200);
+
+      const cookie = response.headers["set-cookie"];
+
+      expect(cookie).toBeDefined();
+
+      expect(cookie).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining(`${ACCESS_TOKEN.NAME}=`),
+          expect.stringContaining(`${REFRESH_TOKEN.NAME}=`),
+        ]),
+      );
     });
 
-    const response = await request(app).post(LOGIN_URL).send({
-      email: DEFAULT_EMAIL,
-      password: DEFAULT_PASSWORD,
+    it("should return an error for a non-existent email", async () => {
+      const response = await request(app).post(LOGIN_URL).send({
+        email: FAKE_EMAIL,
+        password: FAKE_PASSWORD,
+      });
+
+      expect(response.status).toBe(401);
     });
 
-    expect(response.status).toBe(200);
+    it("should return an error for an incorrect password", async () => {
+      const user = await userFactory();
+      const response = await request(app).post(LOGIN_URL).send({
+        email: user.email,
+        password: FAKE_PASSWORD,
+      });
 
-    const cookie = response.headers["set-cookie"];
-
-    expect(cookie).toBeDefined();
-
-    expect(cookie).toEqual(
-      expect.arrayContaining([
-        expect.stringContaining(`${ACCESS_TOKEN_NAME}=`),
-        expect.stringContaining(`${REFRESH_TOKEN_NAME}=`),
-      ]),
-    );
-  });
-
-  it("should return an error for a non-existent email", async () => {
-    const response = await request(app).post(LOGIN_URL).send({
-      email: DEFAULT_EMAIL,
-      password: DEFAULT_PASSWORD,
+      expect(response.status).toBe(401);
     });
 
-    expect(response.status).toBe(401);
-  });
+    it("should return a validation error when email is empty", async () => {
+      const response = await request(app).post(LOGIN_URL).send({
+        email: "",
+        password: FAKE_PASSWORD,
+      });
 
-  it("should return an error for an incorrect password", async () => {
-    const hashedPassword = await bcrypt.hash(DEFAULT_PASSWORD, 10);
-
-    await prisma.user.create({
-      data: {
-        email: DEFAULT_EMAIL,
-        password: hashedPassword,
-      },
+      expect(response.status).toBe(400);
     });
 
-    const response = await request(app).post(LOGIN_URL).send({
-      email: DEFAULT_EMAIL,
-      password: "wrongpassword123",
+    it("should return a validation error when password is empty", async () => {
+      const response = await request(app).post(LOGIN_URL).send({
+        email: FAKE_EMAIL,
+        password: "",
+      });
+
+      expect(response.status).toBe(400);
     });
-
-    expect(response.status).toBe(401);
-  });
-
-  it("should return a validation error when email is empty", async () => {
-    const response = await request(app).post(LOGIN_URL).send({
-      email: "",
-      password: DEFAULT_PASSWORD,
-    });
-
-    expect(response.status).toBe(400);
-  });
-
-  it("should return a validation error when password is empty", async () => {
-    const response = await request(app).post(LOGIN_URL).send({
-      email: DEFAULT_EMAIL,
-      password: "",
-    });
-
-    expect(response.status).toBe(400);
   });
 });

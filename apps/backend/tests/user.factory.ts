@@ -1,14 +1,12 @@
 import { randomUUID } from "crypto";
 import { prisma } from "../lib/prisma.ts";
 import { createAuthToken } from "../src/core/jwt.ts";
+import bcrypt from "bcrypt";
 import type {
   UserCreateInput,
   UserModel,
 } from "../src/generated/prisma/models";
-import {
-  ACCESS_TOKEN_EXPIRES_IN,
-  REFRESH_TOKEN_EXPIRES_IN,
-} from "../src/auth/auth.constants.ts";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../src/auth/auth.constants.ts";
 import { config } from "../config.ts";
 
 /**
@@ -17,16 +15,21 @@ import { config } from "../config.ts";
 export const userFactory = async (overrides: Partial<UserCreateInput> = {}) => {
   const randomSeed = randomUUID();
 
-  return prisma.user.create({
+  const rawPassword = `pass888${randomSeed}`;
+  const hashedPassword = await bcrypt.hash(rawPassword, 10);
+
+  const user = await prisma.user.create({
     data: {
       email: `email${randomSeed}@gmail.com`,
-      password: `pass888${randomSeed}`,
+      password: hashedPassword,
       gender: "MALE",
       firstName: "Oleksandr",
       lastName: "Globych",
       ...overrides,
     },
   });
+
+  return { ...user, rawPassword };
 };
 
 /**
@@ -43,13 +46,13 @@ export const authUserFactory = async (
       user.id,
       user.email,
       config.jwtSecret,
-      ACCESS_TOKEN_EXPIRES_IN,
+      ACCESS_TOKEN.JWT_STANDARD_LIFETIME,
     ),
     refreshToken: createAuthToken(
       user.id,
       user.email,
       config.jwtRefreshSecret,
-      REFRESH_TOKEN_EXPIRES_IN,
+      REFRESH_TOKEN.JWT_STANDARD_LIFETIME,
     ),
   };
 };

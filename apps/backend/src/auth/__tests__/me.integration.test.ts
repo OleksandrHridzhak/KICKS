@@ -2,12 +2,12 @@ import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import request from "supertest";
 import app from "../../../index.ts";
 import { prisma } from "../../../lib/prisma.ts";
-import { ACCESS_TOKEN_NAME } from "../auth.constants.ts";
+import { ACCESS_TOKEN } from "../auth.constants.ts";
 import { authUserFactory } from "../../../tests/user.factory.ts";
 
 const ME_URL = "/api/auth/me";
 
-describe("auth/me", () => {
+describe("URL /auth/me", () => {
   beforeEach(async () => {
     await prisma.user.deleteMany();
   });
@@ -16,13 +16,13 @@ describe("auth/me", () => {
     await prisma.$disconnect();
   });
 
-  describe("GET", () => {
+  describe("GET /auth/me", () => {
     it("returns users data when token is provided", async () => {
       const { user, accessToken } = await authUserFactory();
 
       const response = await request(app)
         .get(ME_URL)
-        .set("Cookie", `${ACCESS_TOKEN_NAME}=${accessToken}`);
+        .set("Cookie", `${ACCESS_TOKEN.NAME}=${accessToken}`);
 
       expect(response.status).toBe(200);
 
@@ -46,7 +46,7 @@ describe("auth/me", () => {
     it("returns 401 when the token is not valid", async () => {
       const response = await request(app)
         .get(ME_URL)
-        .set("Cookie", `${ACCESS_TOKEN_NAME}=invalid-token`);
+        .set("Cookie", `${ACCESS_TOKEN.NAME}=invalid-token`);
 
       expect(response.status).toBe(401);
     });

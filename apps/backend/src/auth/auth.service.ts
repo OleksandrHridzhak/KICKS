@@ -10,11 +10,7 @@ import { type TokenPayload } from "./auth.types.ts";
 
 import { createAuthToken } from "../core/jwt.ts";
 import { config } from "../../config.ts";
-import {
-  ACCESS_TOKEN_EXPIRES_IN,
-  REFRESH_SESSION_TOKEN_EXPIRES_IN,
-  REFRESH_TOKEN_EXPIRES_IN,
-} from "./auth.constants.ts";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "./auth.constants.ts";
 
 import type { RegisterDto, LoginDto } from "./auth.schema.ts";
 
@@ -51,14 +47,16 @@ export const registerService = async ({
     user.id,
     user.email,
     config.jwtSecret,
-    ACCESS_TOKEN_EXPIRES_IN,
+    ACCESS_TOKEN.JWT_STANDARD_LIFETIME,
   );
   const refreshToken = createAuthToken(
     user.id,
     user.email,
     config.jwtRefreshSecret,
 
-    rememberMe ? REFRESH_TOKEN_EXPIRES_IN : REFRESH_SESSION_TOKEN_EXPIRES_IN,
+    rememberMe
+      ? REFRESH_TOKEN.JWT_STANDARD_LIFETIME
+      : REFRESH_TOKEN.JWT_SHORT_SESSION_LIFETIME,
   );
 
   return {
@@ -92,13 +90,15 @@ export const loginService = async ({
     user.id,
     user.email,
     config.jwtSecret,
-    ACCESS_TOKEN_EXPIRES_IN,
+    ACCESS_TOKEN.JWT_STANDARD_LIFETIME,
   );
   const refreshToken = createAuthToken(
     user.id,
     user.email,
     config.jwtRefreshSecret,
-    rememberMe ? REFRESH_TOKEN_EXPIRES_IN : REFRESH_SESSION_TOKEN_EXPIRES_IN,
+    rememberMe
+      ? REFRESH_TOKEN.JWT_STANDARD_LIFETIME
+      : REFRESH_TOKEN.JWT_SHORT_SESSION_LIFETIME,
   );
 
   return {
@@ -117,7 +117,7 @@ export const refreshService = async (refreshToken: string) => {
     payload.id,
     payload.email,
     config.jwtSecret,
-    ACCESS_TOKEN_EXPIRES_IN,
+    ACCESS_TOKEN.JWT_STANDARD_LIFETIME,
   );
 
   return { accessToken };
