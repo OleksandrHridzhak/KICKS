@@ -4,8 +4,9 @@ import app from "../../../index.ts";
 import { prisma } from "../../core/prisma.ts";
 import { ACCESS_TOKEN } from "../auth.constants.ts";
 import { authUserFactory } from "../../../tests/user.factory.ts";
+import { API } from "../../../../../packages/routes/index.ts";
 
-const ME_URL = "/api/auth/me";
+const ME_URL = API.AUTH_ROUTES.ME;
 
 describe("URL /auth/me", () => {
   beforeEach(async () => {

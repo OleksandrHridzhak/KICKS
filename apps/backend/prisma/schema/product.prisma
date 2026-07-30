@@ -1,12 +1,39 @@
+// ==============================
+// Products
+// ==============================
+
 model Product {
-  id          String           @id @default(uuid())
+  id          String  @id @default(uuid())
   name        String
   description String
   price       Decimal
-  category    String
-  brand       String
-  variants    ProductVariant[]
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  brandId String
+  brand   Brand  @relation(fields: [brandId], references: [id])
+
+  variants ProductVariant[]
 }
+
+model Brand {
+  id   String @id @default(uuid())
+  name String @unique
+
+  products Product[]
+}
+
+model Category {
+  id   String @id @default(uuid())
+  name String @unique
+
+  products Product[]
+}
+
+// ==============================
+// Variants
+// ==============================
 
 model ProductVariant {
   id          String @id @default(uuid())

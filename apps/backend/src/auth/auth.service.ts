@@ -12,7 +12,10 @@ import { createAuthToken } from "../core/jwt.ts";
 import { config } from "../../config.ts";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "./auth.constants.ts";
 
-import type { RegisterDto, LoginDto } from "./auth.schema.ts";
+import type {
+  RegisterDto,
+  LoginDto,
+} from "../../../../packages/schemas/auth/auth.schema.ts";
 
 export const registerService = async ({
   email,

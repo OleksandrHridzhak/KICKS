@@ -1,0 +1,5 @@
+name: kicks
+variables:
+  - name: url
+    value: http://localhost:3337/api
+    description: ""

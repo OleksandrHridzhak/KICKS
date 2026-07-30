@@ -1,19 +1,29 @@
 import { Router } from "express";
 import {
   createProductController,
+  getProductCatalogController,
+  getVariantController,
   updateProductController,
 } from "./product.controller.ts";
+import {
+  productCatalogReqSchema,
+  type ProductCatalogReqDto,
+} from "../../../../packages/schemas/product/product.catalog.schema.ts";
+
+import { validationMiddleware } from "../middleware/validation.middleware.ts";
+import { PRODUCT_ROUTES } from "../../../../packages/routes/product.routes.ts";
+
 const router = Router();
 
-router.post("/", createProductController);
-router.patch("/:id", updateProductController);
-// router.delete("/product", );
+router.get(PRODUCT_ROUTES.BY_ID(":id"), getVariantController);
 
-// router.get("/product");
-// router.put("/proudct");
+router.get(
+  PRODUCT_ROUTES.CATALOG,
+  validationMiddleware(productCatalogReqSchema),
+  getProductCatalogController,
+);
 
-// router.post("/variant");
-// router.put("/variant");
-// router.delete("/variant");
+router.post(PRODUCT_ROUTES.CREATE, createProductController);
+router.patch(PRODUCT_ROUTES.BY_ID(":id"), updateProductController);
 
 export default router;

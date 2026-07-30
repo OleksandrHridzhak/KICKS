@@ -9,7 +9,7 @@
     "dev": "nodemon"
   },
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed": "tsx prisma/index.ts"
   },
   "keywords": [],
   "author": "",

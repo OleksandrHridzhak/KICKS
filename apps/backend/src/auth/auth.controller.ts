@@ -1,5 +1,8 @@
 import { type Request, type Response } from "express";
-import type { RegisterDto, LoginDto } from "./auth.schema.ts";
+import type {
+  RegisterDto,
+  LoginDto,
+} from "../../../../packages/schemas/auth/auth.schema.ts";
 import {
   registerService,
   loginService,

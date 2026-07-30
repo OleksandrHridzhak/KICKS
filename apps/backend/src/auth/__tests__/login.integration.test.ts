@@ -4,8 +4,9 @@ import app from "../../../index.ts";
 import { prisma } from "../../core/prisma.ts";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../auth.constants.ts";
 import { userFactory } from "../../../tests/user.factory.ts";
+import { API } from "../../../../../packages/routes/index.ts";
 
-const LOGIN_URL = "/api/auth/login";
+const LOGIN_URL = API.AUTH_ROUTES.LOGIN;
 const FAKE_EMAIL = "emai66l@gmail.com";
 const FAKE_PASSWORD = "ueru783847h";
 

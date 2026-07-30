@@ -4,8 +4,9 @@ import app from "../../../index.ts";
 import { prisma } from "../../core/prisma.ts";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../auth.constants.ts";
 import { authUserFactory } from "../../../tests/user.factory.ts";
+import { API } from "../../../../../packages/routes/index.ts";
 
-const LOGOUT_URL = "/api/auth/logout";
+const LOGOUT_URL = API.AUTH_ROUTES.LOGOUT;
 
 describe("Logo out test", () => {
   beforeEach(async () => {
