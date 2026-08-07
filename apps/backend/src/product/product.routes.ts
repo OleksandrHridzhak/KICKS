@@ -1,14 +1,12 @@
 import { Router } from "express";
 import {
-  createProductController,
   getProductCatalogController,
-  getVariantController,
-  updateProductController,
-} from "./product.controller.ts";
-import {
-  productCatalogReqSchema,
-  type ProductCatalogReqDto,
-} from "../../../../packages/schemas/product/product.catalog.schema.ts";
+} from "./public/get-product-catalog/get-product-catalog.controller.ts";
+import { getVariantController } from "./public/get-product-variant/get-product-variant.controller.ts";
+import { createProductController } from "./admin/create-product/create-product.controller.ts";
+import { updateProductController } from "./admin/update-product/update-product.controller.ts";
+import { deleteProductController } from "./admin/delete-product/delete-product.controller.ts";
+import { productCatalogReqSchema } from "../../../../packages/schemas/product/product.catalog.schema.ts";
 
 import { validationMiddleware } from "../middleware/validation.middleware.ts";
 import { PRODUCT_ROUTES } from "../../../../packages/routes/product.routes.ts";
@@ -25,5 +23,6 @@ router.get(
 
 router.post(PRODUCT_ROUTES.CREATE, createProductController);
 router.patch(PRODUCT_ROUTES.BY_ID(":id"), updateProductController);
+router.delete(PRODUCT_ROUTES.BY_ID(":id"), deleteProductController);
 
 export default router;
