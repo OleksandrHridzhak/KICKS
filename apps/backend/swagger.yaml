@@ -1,0 +1,589 @@
+openapi: 3.0.0
+info:
+  title: KICKS SERVER API
+  version: 1.0.0
+components:
+  securitySchemes:
+    accessCookie:
+      type: apiKey
+      in: cookie
+      name: accessToken
+      description: Access token stored in an HTTP-only cookie.
+    refreshCookie:
+      type: apiKey
+      in: cookie
+      name: refreshToken
+      description: Refresh token stored in an HTTP-only cookie.
+  schemas: {}
+  parameters: {}
+paths:
+  /api/products:
+    get:
+      summary: Get product catalog
+      description: Returns a paginated list of products with optional filtering and sorting.
+      tags:
+        - Products
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+            exclusiveMinimum: true
+            default: 1
+            example: 1
+          required: false
+          name: page
+          in: query
+        - schema:
+            type: integer
+            minimum: 0
+            exclusiveMinimum: true
+            default: 4
+            example: 4
+          required: false
+          name: limit
+          in: query
+        - schema:
+            type: array
+            items:
+              type: integer
+            example:
+              - 40
+              - 41
+          required: false
+          name: size
+          in: query
+        - schema:
+            type: array
+            items:
+              type: string
+            example:
+              - black
+              - white
+          required: false
+          name: color
+          in: query
+        - schema:
+            type: array
+            items:
+              type: string
+            example:
+              - running
+              - basketball
+          required: false
+          name: categoryIds
+          in: query
+        - schema:
+            type: number
+            nullable: true
+            minimum: 0
+            example: 50
+          required: false
+          name: priceMin
+          in: query
+        - schema:
+            type: number
+            nullable: true
+            minimum: 0
+            example: 250
+          required: false
+          name: priceMax
+          in: query
+        - schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - MEN
+                - WOMEN
+                - UNISEX
+            example:
+              - MEN
+          required: false
+          name: targetGender
+          in: query
+        - schema:
+            type: string
+            enum:
+              - price_asc
+              - price_desc
+              - newest
+              - oldest
+              - tranding
+            example: newest
+          required: false
+          name: sortBy
+          in: query
+      responses:
+        "200":
+          description: Products retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: clx123abc456def789
+                    name:
+                      type: string
+                      example: Air Max 90
+                    photoUrl:
+                      type: string
+                      example: https://cdn.example.com/products/air-max-90.jpg
+                    price:
+                      type: number
+                      example: 129.99
+                  required:
+                    - id
+                    - name
+                    - photoUrl
+                    - price
+        "400":
+          description: Invalid query parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    post:
+      summary: Create product
+      description: Creates a new product.
+      tags:
+        - Products
+      requestBody:
+        content:
+          application/json:
+            example: &a1
+              name: Nike Air Max 270
+              description: Кросівки Nike Air Max 270 для повсякденного використання. Легкі та
+                зручні.
+              price: 149.99
+              category: shoes
+              brand: Nike
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                category:
+                  type: string
+                brand:
+                  type: string
+              required:
+                - name
+                - description
+                - price
+                - category
+                - brand
+      responses:
+        "201":
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                additionalProperties:
+                  nullable: true
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /api/products/{id}:
+    get:
+      summary: Get product variant
+      description: Returns a product variant by id.
+      tags:
+        - Products
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: id
+          in: path
+      responses:
+        "200":
+          description: Product variant retrieved successfully
+        "404":
+          description: Product variant not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    patch:
+      summary: Update product
+      description: Updates an existing product by id.
+      tags:
+        - Products
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: id
+          in: path
+      requestBody:
+        content:
+          application/json:
+            example: *a1
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                category:
+                  type: string
+                brand:
+                  type: string
+              required:
+                - name
+                - description
+                - price
+                - category
+                - brand
+      responses:
+        "200":
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                additionalProperties:
+                  nullable: true
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /api/auth/register:
+    post:
+      summary: Register a user
+      description: Creates a new user account and sets authentication cookies.
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+                  pattern: \d
+                gender:
+                  type: string
+                  enum:
+                    - MALE
+                    - FEMALE
+                    - OTHER
+                firstName:
+                  type: string
+                  minLength: 1
+                lastName:
+                  type: string
+                  minLength: 1
+                rememberMe:
+                  type: boolean
+                  default: false
+              required:
+                - email
+                - password
+      responses:
+        "201":
+          description: User registered successfully
+        "400":
+          description: Invalid registration data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "409":
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /api/auth/login:
+    post:
+      summary: Log in a user
+      description: Authenticates a user and sets authentication cookies.
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 1
+                rememberMe:
+                  type: boolean
+                  default: false
+              required:
+                - email
+                - password
+      responses:
+        "200":
+          description: User logged in successfully
+        "400":
+          description: Invalid login data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Invalid email or password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /api/auth/refresh:
+    post:
+      summary: Refresh an access token
+      description: Creates a new access token using the refresh-token cookie.
+      tags:
+        - Authentication
+      security:
+        - refreshCookie: []
+      responses:
+        "204":
+          description: Access token refreshed successfully
+        "401":
+          description: Invalid or missing refresh token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /api/auth/logout:
+    post:
+      summary: Log out a user
+      description: Clears the authentication cookies for the current user.
+      tags:
+        - Authentication
+      security:
+        - accessCookie: []
+      responses:
+        "204":
+          description: User logged out successfully
+        "401":
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /api/auth/me:
+    get:
+      summary: Get the current user
+      description: Returns information about the authenticated user.
+      tags:
+        - Authentication
+      security:
+        - accessCookie: []
+      responses:
+        "200":
+          description: Current user retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 550e8400-e29b-41d4-a716-446655440000
+                  email:
+                    type: string
+                    format: email
+                    example: user@example.com
+                  firstName:
+                    type: string
+                    nullable: true
+                    example: Alex
+                  lastName:
+                    type: string
+                    nullable: true
+                    example: Johnson
+                  gender:
+                    type: string
+                    nullable: true
+                    enum:
+                      - MALE
+                      - FEMALE
+                      - OTHER
+                      - null
+                    example: OTHER
+                required:
+                  - id
+                  - email
+                  - firstName
+                  - lastName
+                  - gender
+        "401":
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message

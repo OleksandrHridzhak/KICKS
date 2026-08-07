@@ -1,9 +1,14 @@
-import * as z from "zod";
+import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
+import { z } from "zod";
+
+extendZodWithOpenApi(z);
+
 import { Gender } from "../../../apps/backend/src/generated/prisma/enums.ts";
 
 // Register schema ---
 export const registerReqSchema = z.object({
   body: z.object({
+
     email: z.email("Invalid email"),
     password: z
       .string()
@@ -32,3 +37,22 @@ export const loginReqSchema = z.object({
 });
 
 export type LoginDto = z.infer<typeof loginReqSchema>["body"];
+
+// Current user response schema ---
+export const meResponseSchema = z.object({
+  id: z.string().openapi({
+    example: "550e8400-e29b-41d4-a716-446655440000",
+  }),
+  email: z.email().openapi({
+    example: "user@example.com",
+  }),
+  firstName: z.string().nullable().openapi({
+    example: "Alex",
+  }),
+  lastName: z.string().nullable().openapi({
+    example: "Johnson",
+  }),
+  gender: z.enum(Gender).nullable().openapi({
+    example: "OTHER",
+  }),
+});

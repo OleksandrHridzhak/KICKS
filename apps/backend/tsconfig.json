@@ -10,5 +10,6 @@
     "skipLibCheck": true,
     "moduleResolution": "bundler"
   },
-  "include": ["src", "./vitest.config.ts", "tests"]
+  "include": ["src", "./vitest.config.ts", "tests"],
+  "exclude": ["node_modules", "dist", "build"]
 }

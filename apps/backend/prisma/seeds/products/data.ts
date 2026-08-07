@@ -28,6 +28,7 @@ export const products = [
     description:
       "Comfortable everyday sneakers with a lightweight mesh upper and Air cushioning.",
     price: 149.99,
+    targetGender: "UNISEX",
 
     brand: {
       connect: {
@@ -35,10 +36,12 @@ export const products = [
       },
     },
 
-    category: {
-      connect: {
-        name: "Sneakers",
-      },
+    categories: {
+      connect: [
+        {
+          name: "Sneakers",
+        },
+      ],
     },
 
     variants: {
@@ -89,6 +92,7 @@ export const products = [
     description:
       "High-performance running shoes designed for ultimate energy return and lightweight comfort.",
     price: 189.99,
+    targetGender: "MEN",
 
     brand: {
       connect: {
@@ -96,10 +100,12 @@ export const products = [
       },
     },
 
-    category: {
-      connect: {
-        name: "Running",
-      },
+    categories: {
+      connect: [
+        {
+          name: "Running",
+        },
+      ],
     },
 
     variants: {
@@ -149,6 +155,7 @@ export const products = [
     description:
       "Low-cut basketball shoes built for speed, support, and responsiveness on the court.",
     price: 199.99,
+    targetGender: "MEN",
 
     brand: {
       connect: {
@@ -156,10 +163,12 @@ export const products = [
       },
     },
 
-    category: {
-      connect: {
-        name: "Basketball",
-      },
+    categories: {
+      connect: [
+        {
+          name: "Basketball",
+        },
+      ],
     },
 
     variants: {
@@ -193,6 +202,7 @@ export const products = [
     description:
       "Timeless street style icon featuring a soft suede upper and classic rubber outsole.",
     price: 75.0,
+    targetGender: "UNISEX",
 
     brand: {
       connect: {
@@ -200,10 +210,12 @@ export const products = [
       },
     },
 
-    category: {
-      connect: {
-        name: "Sneakers",
-      },
+    categories: {
+      connect: [
+        {
+          name: "Sneakers",
+        },
+      ],
     },
 
     variants: {
@@ -250,6 +262,7 @@ export const products = [
     description:
       "All-in-one neutral running shoe for any distance, featuring light and responsive NITRO foam cushioning.",
     price: 120.0,
+    targetGender: "WOMEN",
 
     brand: {
       connect: {
@@ -257,10 +270,12 @@ export const products = [
       },
     },
 
-    category: {
-      connect: {
-        name: "Running",
-      },
+    categories: {
+      connect: [
+        {
+          name: "Running",
+        },
+      ],
     },
 
     variants: {
@@ -293,6 +308,7 @@ export const products = [
     description:
       "Retro basketball sneakers inspired by the '84 original, bringing court-ready vibes to everyday wear.",
     price: 110.0,
+    targetGender: "UNISEX",
 
     brand: {
       connect: {
@@ -300,10 +316,12 @@ export const products = [
       },
     },
 
-    category: {
-      connect: {
-        name: "Basketball",
-      },
+    categories: {
+      connect: [
+        {
+          name: "Basketball",
+        },
+      ],
     },
 
     variants: {

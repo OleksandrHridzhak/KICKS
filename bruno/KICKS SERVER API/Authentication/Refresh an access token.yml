@@ -1,0 +1,86 @@
+info:
+  name: Refresh an access token
+  type: http
+  seq: 3
+  tags:
+    - Authentication
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/auth/refresh"
+  headers:
+    - name: refreshToken
+      value: "{{apiKey}}"
+      description: Refresh token stored in an HTTP-only cookie.
+  auth:
+    type: apikey
+    key: refreshToken
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: Access token refreshed successfully
+    request:
+      url: "{{baseUrl}}/api/auth/refresh"
+      method: POST
+      headers:
+        - name: refreshToken
+          value: "{{apiKey}}"
+          description: Refresh token stored in an HTTP-only cookie.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: 401 Response
+    description: Invalid or missing refresh token
+    request:
+      url: "{{baseUrl}}/api/auth/refresh"
+      method: POST
+      headers:
+        - name: refreshToken
+          value: "{{apiKey}}"
+          description: Refresh token stored in an HTTP-only cookie.
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": ""
+          }
+  - name: 500 Response
+    description: Internal server error
+    request:
+      url: "{{baseUrl}}/api/auth/refresh"
+      method: POST
+      headers:
+        - name: refreshToken
+          value: "{{apiKey}}"
+          description: Refresh token stored in an HTTP-only cookie.
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": ""
+          }
+
+docs: Creates a new access token using the refresh-token cookie.

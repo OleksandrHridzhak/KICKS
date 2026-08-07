@@ -1,0 +1,94 @@
+info:
+  name: Update product
+  type: http
+  seq: 4
+  tags:
+    - Products
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/api/products/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Nike Air Max 270",
+        "description": "Кросівки Nike Air Max 270 для повсякденного використання. Легкі та зручні.",
+        "price": 149.99,
+        "category": "shoes",
+        "brand": "Nike"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 200 Response
+    description: Product updated successfully
+    request:
+      url: "{{baseUrl}}/api/products/:id"
+      method: PATCH
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "Nike Air Max 270",
+            "description": "Кросівки Nike Air Max 270 для повсякденного використання. Легкі та зручні.",
+            "price": 149.99,
+            "category": "shoes",
+            "brand": "Nike"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+  - name: 500 Response
+    description: Internal server error
+    request:
+      url: "{{baseUrl}}/api/products/:id"
+      method: PATCH
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "Nike Air Max 270",
+            "description": "Кросівки Nike Air Max 270 для повсякденного використання. Легкі та зручні.",
+            "price": 149.99,
+            "category": "shoes",
+            "brand": "Nike"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": ""
+          }
+
+docs: Updates an existing product by id.

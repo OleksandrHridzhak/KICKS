@@ -1,1 +1,2 @@
 - Faker to generate seed easier
+-  i18n

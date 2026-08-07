@@ -1,0 +1,293 @@
+info:
+  name: Get product catalog
+  type: http
+  seq: 1
+  tags:
+    - Products
+
+http:
+  method: GET
+  url: "{{baseUrl}}/api/products"
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "4"
+      type: query
+    - name: size
+      value: 40,41
+      type: query
+    - name: color
+      value: black,white
+      type: query
+    - name: categoryIds
+      value: running,basketball
+      type: query
+    - name: priceMin
+      value: "50"
+      type: query
+    - name: priceMax
+      value: "250"
+      type: query
+    - name: targetGender
+      value: MEN
+      type: query
+      disabled: true
+    - name: targetGender
+      value: WOMEN
+      type: query
+      disabled: true
+    - name: targetGender
+      value: UNISEX
+      type: query
+      disabled: true
+    - name: sortBy
+      value: price_asc
+      type: query
+      disabled: true
+    - name: sortBy
+      value: price_desc
+      type: query
+      disabled: true
+    - name: sortBy
+      value: newest
+      type: query
+      disabled: true
+    - name: sortBy
+      value: oldest
+      type: query
+      disabled: true
+    - name: sortBy
+      value: tranding
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 200 Response
+    description: Products retrieved successfully
+    request:
+      url: "{{baseUrl}}/api/products"
+      method: GET
+      params:
+        - name: page
+          value: "1"
+          type: query
+        - name: limit
+          value: "4"
+          type: query
+        - name: size
+          value: 40,41
+          type: query
+        - name: color
+          value: black,white
+          type: query
+        - name: categoryIds
+          value: running,basketball
+          type: query
+        - name: priceMin
+          value: "50"
+          type: query
+        - name: priceMax
+          value: "250"
+          type: query
+        - name: targetGender
+          value: MEN
+          type: query
+          disabled: true
+        - name: targetGender
+          value: WOMEN
+          type: query
+          disabled: true
+        - name: targetGender
+          value: UNISEX
+          type: query
+          disabled: true
+        - name: sortBy
+          value: price_asc
+          type: query
+          disabled: true
+        - name: sortBy
+          value: price_desc
+          type: query
+          disabled: true
+        - name: sortBy
+          value: newest
+          type: query
+          disabled: true
+        - name: sortBy
+          value: oldest
+          type: query
+          disabled: true
+        - name: sortBy
+          value: tranding
+          type: query
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          [
+            {
+              "id": "clx123abc456def789",
+              "name": "Air Max 90",
+              "photoUrl": "https://cdn.example.com/products/air-max-90.jpg",
+              "price": 129.99
+            }
+          ]
+  - name: 400 Response
+    description: Invalid query parameters
+    request:
+      url: "{{baseUrl}}/api/products"
+      method: GET
+      params:
+        - name: page
+          value: "1"
+          type: query
+        - name: limit
+          value: "4"
+          type: query
+        - name: size
+          value: 40,41
+          type: query
+        - name: color
+          value: black,white
+          type: query
+        - name: categoryIds
+          value: running,basketball
+          type: query
+        - name: priceMin
+          value: "50"
+          type: query
+        - name: priceMax
+          value: "250"
+          type: query
+        - name: targetGender
+          value: MEN
+          type: query
+          disabled: true
+        - name: targetGender
+          value: WOMEN
+          type: query
+          disabled: true
+        - name: targetGender
+          value: UNISEX
+          type: query
+          disabled: true
+        - name: sortBy
+          value: price_asc
+          type: query
+          disabled: true
+        - name: sortBy
+          value: price_desc
+          type: query
+          disabled: true
+        - name: sortBy
+          value: newest
+          type: query
+          disabled: true
+        - name: sortBy
+          value: oldest
+          type: query
+          disabled: true
+        - name: sortBy
+          value: tranding
+          type: query
+          disabled: true
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": ""
+          }
+  - name: 500 Response
+    description: Internal server error
+    request:
+      url: "{{baseUrl}}/api/products"
+      method: GET
+      params:
+        - name: page
+          value: "1"
+          type: query
+        - name: limit
+          value: "4"
+          type: query
+        - name: size
+          value: 40,41
+          type: query
+        - name: color
+          value: black,white
+          type: query
+        - name: categoryIds
+          value: running,basketball
+          type: query
+        - name: priceMin
+          value: "50"
+          type: query
+        - name: priceMax
+          value: "250"
+          type: query
+        - name: targetGender
+          value: MEN
+          type: query
+          disabled: true
+        - name: targetGender
+          value: WOMEN
+          type: query
+          disabled: true
+        - name: targetGender
+          value: UNISEX
+          type: query
+          disabled: true
+        - name: sortBy
+          value: price_asc
+          type: query
+          disabled: true
+        - name: sortBy
+          value: price_desc
+          type: query
+          disabled: true
+        - name: sortBy
+          value: newest
+          type: query
+          disabled: true
+        - name: sortBy
+          value: oldest
+          type: query
+          disabled: true
+        - name: sortBy
+          value: tranding
+          type: query
+          disabled: true
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": ""
+          }
+
+docs: Returns a paginated list of products with optional filtering and sorting.

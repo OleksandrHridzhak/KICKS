@@ -1,0 +1,82 @@
+info:
+  name: Create product
+  type: http
+  seq: 2
+  tags:
+    - Products
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/products"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Nike Air Max 270",
+        "description": "Кросівки Nike Air Max 270 для повсякденного використання. Легкі та зручні.",
+        "price": 149.99,
+        "category": "shoes",
+        "brand": "Nike"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 201 Response
+    description: Product created successfully
+    request:
+      url: "{{baseUrl}}/api/products"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "name": "Nike Air Max 270",
+            "description": "Кросівки Nike Air Max 270 для повсякденного використання. Легкі та зручні.",
+            "price": 149.99,
+            "category": "shoes",
+            "brand": "Nike"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+  - name: 500 Response
+    description: Internal server error
+    request:
+      url: "{{baseUrl}}/api/products"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "name": "Nike Air Max 270",
+            "description": "Кросівки Nike Air Max 270 для повсякденного використання. Легкі та зручні.",
+            "price": 149.99,
+            "category": "shoes",
+            "brand": "Nike"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": ""
+          }
+
+docs: Creates a new product.

@@ -1,4 +1,5 @@
 import { type Request, type Response, type NextFunction } from "express";
+import type { ErrorResponseDto } from "../../../../packages/schemas/error/error.schema.ts";
 
 import { config } from "../../config.ts";
 import {
@@ -12,7 +13,7 @@ import {
 export const errorMiddleware = (
   err: Error,
   req: Request,
-  res: Response,
+  res: Response<ErrorResponseDto>,
   __next: NextFunction,
 ) => {
   let statusCode = 500;

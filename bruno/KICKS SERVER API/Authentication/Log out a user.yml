@@ -1,0 +1,86 @@
+info:
+  name: Log out a user
+  type: http
+  seq: 4
+  tags:
+    - Authentication
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/auth/logout"
+  headers:
+    - name: accessToken
+      value: "{{apiKey}}"
+      description: Access token stored in an HTTP-only cookie.
+  auth:
+    type: apikey
+    key: accessToken
+    value: "{{apiKey}}"
+    placement: header
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 204 Response
+    description: User logged out successfully
+    request:
+      url: "{{baseUrl}}/api/auth/logout"
+      method: POST
+      headers:
+        - name: accessToken
+          value: "{{apiKey}}"
+          description: Access token stored in an HTTP-only cookie.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+  - name: 401 Response
+    description: Authentication required
+    request:
+      url: "{{baseUrl}}/api/auth/logout"
+      method: POST
+      headers:
+        - name: accessToken
+          value: "{{apiKey}}"
+          description: Access token stored in an HTTP-only cookie.
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": ""
+          }
+  - name: 500 Response
+    description: Internal server error
+    request:
+      url: "{{baseUrl}}/api/auth/logout"
+      method: POST
+      headers:
+        - name: accessToken
+          value: "{{apiKey}}"
+          description: Access token stored in an HTTP-only cookie.
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "message": ""
+          }
+
+docs: Clears the authentication cookies for the current user.
